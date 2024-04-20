@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    
+<!-- CS559 Workbook Pages - page content &copy; 2021, Michael Gleicher -->
+<!-- This page is part of a Workbook developed for the 
+    CS559 Computer Graphics Class at the University of Wisconsin
+    https://graphics.cs.wisc.edu/Courses/559-sp2021/ -->
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../../css/workbook.css">
+        <script src="../../js/resizeIFrames.js"></script>
+    </head>
+    <body>
+        <div class="container container--outer"><div class="maincolumn">
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header"><h1 class="post__title">Page 1: Fancy Texturing</h1>
+		</header>
+        
+        
+        
+		<div class="content post__content clearfix"><p>There are three categories of things we need to think about:</p>
+<ol>
+<li>The &ldquo;science&rdquo; - how do the methods work?</li>
+<li>The &ldquo;engineering&rdquo; - how do we use the methods in practice? (specifically, in a practical API)</li>
+<li>The &ldquo;art&rdquo; - how do we use these to create interesting effects?</li>
+</ol>
+<p>For 1 (the science), we&rsquo;ll discuss how the methods work in theory in class, as well as the readings. Make sure you understand it.</p>
+<p>For 2 (the engineering), you&rsquo;ll need to see how THREE exposes the functionality - mainly by reading the THREE documentation, looking for samples on the web, and trying it out yourself. We&rsquo;ll see more of what is going on &ldquo;under the hood&rdquo; later when we start to program our own shaders.</p>
+<p>For 3 (the art), you&rsquo;ll need to try it out to try to make cool looking stuff. Look for examples on the web to inspire you. In this workbook, try to focus on how to use textures to make cool appearances. You will have the opportunity to make cool shapes and motions in future workbooks. So you might want, to focus on simple objects (primitives are OK) and simple motions for this assignment.</p>
+<p>The exercises in this workbook ask you to try out the features in THREE for fancy texture mapping. We would like you to try to make interesting things to explore what the different types of textures do, but the requirements are pretty minimal for each of the exercises.</p>
+<h2 id="warmup---create-something-interesting-with-texture">Warmup - create something interesting with texture</h2>
+<p>Textures provide an easy way to make a simple object (like a box) into something more interesting.</p>
+<p>Here is a simple example I made - note how simple geometry (it&rsquo;s basically a box - although I did some extra things to get the cover to overhang the edges) becomes much more interesting with a texture. The example is in 
+<a href="../../book/book.js" class="for_students">book/book.js</a>
+. If you want to see how I made it, you can watch lecture 18E from 2020 <a href="https://mediaspace.wisc.edu/media/Lecture+18EA+03+29+21+-+Texture+Review/1_1720feib/199466623">video</a>, <a href="https://canvas.wisc.edu/files/25195468/download?download_frd=1">slides</a> where I create the textbook with textures. The video uses old-style THREE <code>Geometry</code>, but the main ideas are the same. (the code has been updated to use the non-deprecated data structures).</p>
+
+<h3>book</h3><iframe
+    title=""
+    src="../../book/book.html"
+    js = "/book/book.js"
+        xjs = "/book/fcg-texture.jpg"
+    class="includebox includebox-standard"
+    width="100%"
+    height="100%"
+    scrolling="no"
+    frameborder="0"
+></iframe>
+
+<p>Now its your turn. Create some real-world object with a texture in 
+    <a href="../../for_students/09-01-01.js" class="for_students">09-01-01.js</a> below. Look around and see if there&rsquo;s something you want to model: your laptop, a book, etc. This is a good opportunity to incorporate real photos in a texture.</p>
+<p>A goal here is to use simple shapes, but more complex textures, to make an object that is interesting. And the important thing is that you make it (so, you need to at least take the photograph yourself). You need to make something other than the Foundamentals of Computer Graphics book.</p>
+<iframe
+    title="09-01-01"
+    src="../../for_students/09-01-01.html"
+    class="includebox includebox-standard"
+    width="100%"
+    height="100%"
+    scrolling="no"
+    frameborder="0"
+></iframe>
+
+<p>The first advanced thing we&rsquo;ll try is material property maps on <a href="../../docs/2/" class="Next__Page">Next: Exercise 1: Material Property Maps </a>.</p>
+
+            
+
+
+        
+        <div class="page-rubric-container">
+    <details class="page__rubric">
+    <summary>Page 1 Rubric (6 points total)</summary>
+    <br/>
+    <div class="page-rubric-grid">
+            <div class="page-rubric-grid-header rubric-box-regular">Points (6):</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-01-01</div>
+                <div class="page-rubric-grid-points rubric-box-regular">3 pt</div>
+                <div class="page-rubric-grid-desc rubric-box-regular">identifyable as a real object</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-01-01</div>
+                <div class="page-rubric-grid-points rubric-box-regular">3 pt</div>
+                <div class="page-rubric-grid-desc rubric-box-regular">texture makes it look like a real object</div></div>
+    </details>
+    </div>
+			
+			
+		</div>
+	</article>
+</main>
+
+                </div>
+                <div class="sidebar">
+<h2 class="Side_Title">Workbook 9: Fancier Textures and Lighting</h2>
+<p class="Side__Note">Pages:</p>
+<ul class="Side__List">
+    <li class="Side__Item Side__Unselected"><a href="../../">Index (Fancier Textures and Lighting)</a></li>
+        <li class="Side__Item Side__Selected"> 1: Fancy Texturing </li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/2/">2: Exercise 1: Material Property Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/3/">3: Exercise 2: Bump and Normal Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/4/">4: Exercise 3: Sky Boxes (or: Not-Really-Sky-Boxes and THREE) </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/5/">5: Exercise 4: Environment Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/6/">6: Exercise 5: Shadow Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/7/">7: Multi-Pass Rendering </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/8/">8: Hand-in and Gallery </a></li>
+</ul>
+</div>
+</div>
+    </body>
+</html>

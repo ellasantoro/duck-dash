@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    
+<!-- CS559 Workbook Pages - page content &copy; 2021, Michael Gleicher -->
+<!-- This page is part of a Workbook developed for the 
+    CS559 Computer Graphics Class at the University of Wisconsin
+    https://graphics.cs.wisc.edu/Courses/559-sp2021/ -->
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../../css/workbook.css">
+        <script src="../../js/resizeIFrames.js"></script>
+    </head>
+    <body>
+        <div class="container container--outer"><div class="maincolumn">
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header"><h1 class="post__title">Page 7: Multi-Pass Rendering</h1>
+		</header>
+        
+        
+        
+		<div class="content post__content clearfix"><p>We will talk about the concept of multi-pass rendering in lecture. On this page, we&rsquo;ll focus on a particular kind of multi-pass rendering: where we draw the scene from some other viewpoint than the camera that is ultimately making the picture, store that picture somewhere, and use it (often as a texture) when we make the final picture.</p>
+
+<div class="expandbox">
+    <details class="myexpand" >
+        <summary class="myexpand-head">The other kind of multi-pass rendering (optional)</summary>
+        <div class="markdown-inner myexpand-content">
+        <p>An <strong>optional</strong> digression&hellip;</p>
+<p>This page talks about &ldquo;a particular kind of multi-pass rendering: where we draw the scene from some other viewpoint than the camera&rdquo;. You might wonder about the other kind: where we simply draw things multiple times.</p>
+<p>This (redrawing) is the more common use of the term &ldquo;multi-pass rendering,&rdquo; although it is not the more commonly used technique.</p>
+<p>Redrawing an object multiple times is a trick that is used to create advanced visual effects, to work around the limitations of the hardware, or as an efficiency trick (yes, in some cases, it is faster to draw twice with simple appearances than once with complex ones).</p>
+<p>We will discuss these redraw/overdraw multi-pass methods briefly in lecture. The problem with teaching these (redrawing) methods is that they change very quickly: they depend a lot on the hardware (which we haven&rsquo;t discussed yet). The tricks become obsolete when the hardware changes.</p>
+<p>For example, in the old days, we used redraw multi-pass to combine multiple textures - but now we can do it in the shaders.</p>
+
+        </div>
+    </details>
+</div>      
+    
+<p>This is useful for many things, for example:</p>
+<ul>
+<li>Reflections (we take a picture of what the mirror sees and put that on the mirror, this is kindof a simple form of Environment Map)</li>
+<li>Shadows (we take a picture of what the light sees, and only light those parts)</li>
+<li>Environments (rather than pre-painting an environment map, we render a picture of the world so the correct things show up)</li>
+<li>Picture in Picture effects - you could put a television showing what a camera elsewhere in the scene is pointing at</li>
+</ul>
+<p>From an implementation perspective these things involve:</p>
+<ol>
+<li>Setting up an additional camera</li>
+<li>Rendering a picture from that camera&rsquo;s viewpoint and storing the picture in a texture. This is called <em>render to texture</em>.</li>
+<li>Using that rendered texture when we ultimately draw the scene.</li>
+</ol>
+<p>For shadows (on the previous page), this was built into THREE. The camera was connected to the light source, the image (shadow map) was stored somewhere by three, and its shader used it.</p>
+<p>As you might expect, THREE makes it really easy to do this. Cameras in THREE can easily render in a texture that is used by some material. In fact, for the important special case of environment maps, it is the default. You can make a <code>CubeCamera</code> to take a picture of the scene, and use its <code>renderTarget</code> as an environment map.</p>
+<p>A dynamic environment map is cool: by taking the picture where an object is, you can create reflections (or lighting) based on what the object actually sees - not what was pre-loaded in the texture map. And, they are really easy because they are practically built-in to THREE.</p>
+<p>There are a bunch of steps, all simple:</p>
+<ol>
+<li>You need to create the <code>CubeCamera</code> at the beginning (for example, when you create the object)</li>
+<li>You need to attach the <code>CubeCamera</code>&rsquo;s &ldquo;render target&rdquo; as the environment map of the texture</li>
+<li>At the appropriate time, you need to have the <code>CubeCamera</code> do an <code>update</code> - which is basically, take the picture of the world and put it into the environment map.</li>
+</ol>
+<p>There is a little bit of a catch using the class software framework: you need to take a picture with the &ldquo;environment camera&rdquo; before you use the picture that it takes. If you have a separate environment map for each object, you can do this in the object&rsquo;s stepWorld function (which is called before drawing). Or, you can do this using a callback in the animation loop (useful if you use the same map for multiple objects).</p>
+<p>There are a couple of other potential problems. One problem is that a camera cannot take a picture of itself (for example, if it is looking at itself in a mirror). If a camera takes a picture of an object that uses a texture that is that camera&rsquo;s render target, there is a &ldquo;feedback loop&rdquo; (the camera is looking at itself in the mirror). This generates an error message. It isn&rsquo;t disasterous, but usually we take steps to avoid it (for example, not rendering the objects that use the texture map that we are creating) - you can see examples in the framework demo code.</p>
+<p>For this exercise, I&rsquo;d like you to make a dynamic environment map. Create a scene with a moving object in it. Create a reflective object. Use a dynamic environment map so that you can see the reflection of the moving object. There are examples: one uses <a href="https://cs559.github.io/S20-FrameworkDemos/texture/t3-dyn-env2.html">object centered maps</a> (where there is a camera for each object), and the other just uses a <a href="https://cs559.github.io/S20-FrameworkDemos/texture/t2-dyn-env.html">single cube camera at the center of the world</a>. This is the 2020 version of the framework (things will not work without modification). You shouldn&rsquo;t just copy my code: make sure you understand what is going on, and make something that at least looks different.</p>
+<p>You can find the starter code in 
+    <a href="../../for_students/09-07-01.js" class="for_students">09-07-01.js</a> (
+    <a href="../../for_students/09-07-01.html" class="for_students">09-07-01.html</a>)</p>
+<iframe
+    title="09-07-01"
+    src="../../for_students/09-07-01.html"
+    class="includebox includebox-standard"
+    width="100%"
+    height="100%"
+    scrolling="no"
+    frameborder="0"
+></iframe>
+
+<p>For an advanced point challenge, create a &ldquo;video screen&rdquo; in the scene that shows the image that is taken by a camera that is moving around in the scene (you&rsquo;ll need to have a moving object that we can see). To get the points, it should be obvious what object the camera is &ldquo;attached to&rdquo;, and that the video screen is showing the image from that camera.</p>
+<p><strong>A Final Note:</strong> These kind of multi-pass things involve all kinds of &ldquo;under-the-hood&rdquo; details that can be painful to make work. Trying to get the graphics hardware to draw pictures into the right forms so it can be re-used in other ways can be tricky. Fortunately, THREE takes care of that for us. You don&rsquo;t need to know the details like how it manages memory to make sure the output of one thing can be the input of another. But you do need to understand <em>conceptually</em> how we use this idea of making multiple pictures allows us to achieve effects such as shadows and reflections.</p>
+<h2 id="the-end">The End&hellip;</h2>
+<p>That&rsquo;s the end of this workbook.</p>
+<p>Check that you have filled in all of the text boxes explaining the textures you used and attributions 
+    <a href="../../for_students/09-workbook.txt" class="for_students">09-workbook.txt</a>.</p>
+<p>Be sure to add all of your textures and objects, commit and push your work, and complete the Canvas handin Assignment.</p>
+<p>A warning: the biggest mistake students make in this workbook is to forget to add their texture files to the repo! <a href="../../docs/8/" class="Next__Page">Next: Hand-in and Gallery </a></p>
+
+            
+
+
+        
+        
+        
+        
+        <div class="page-rubric-container">
+    <details class="page__rubric">
+    <summary>Page 7 Rubric (10 points total)</summary>
+    <br/>
+    <div class="page-rubric-grid">
+            <div class="page-rubric-grid-header rubric-box-regular">Points (7):</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-07-01</div>
+                <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+                <div class="page-rubric-grid-desc rubric-box-regular">there is an object reflecting the environment (checks for code using current framework)</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-07-01</div>
+                <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+                <div class="page-rubric-grid-desc rubric-box-regular">the reflections show the scene (not just the background)</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-07-01</div>
+                <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+                <div class="page-rubric-grid-desc rubric-box-regular">you can see moving objects in the reflection</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-07-01</div>
+                <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
+                <div class="page-rubric-grid-desc rubric-box-regular">not the same as the example (checks for code using current framework)</div>
+            <div class="page-rubric-grid-header rubric-box-bonus">Advanced points (3) 
+                :</div><div class="page-rubric-grid-box rubric-box-bonus">Box 09-07-01</div>
+                <div class="page-rubric-grid-points rubric-box-bonus">3 pt</div>
+                <div class="page-rubric-grid-desc rubric-box-bonus">video screen showing what a camera moving in the scene sees</div></div>
+    </details>
+    </div>
+			
+			
+		</div>
+	</article>
+</main>
+
+                </div>
+                <div class="sidebar">
+<h2 class="Side_Title">Workbook 9: Fancier Textures and Lighting</h2>
+<p class="Side__Note">Pages:</p>
+<ul class="Side__List">
+    <li class="Side__Item Side__Unselected"><a href="../../">Index (Fancier Textures and Lighting)</a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/1/">1: Fancy Texturing </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/2/">2: Exercise 1: Material Property Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/3/">3: Exercise 2: Bump and Normal Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/4/">4: Exercise 3: Sky Boxes (or: Not-Really-Sky-Boxes and THREE) </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/5/">5: Exercise 4: Environment Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/6/">6: Exercise 5: Shadow Maps </a></li>
+        <li class="Side__Item Side__Selected"> 7: Multi-Pass Rendering </li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/8/">8: Hand-in and Gallery </a></li>
+</ul>
+</div>
+</div>
+    </body>
+</html>

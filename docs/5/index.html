@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    
+<!-- CS559 Workbook Pages - page content &copy; 2021, Michael Gleicher -->
+<!-- This page is part of a Workbook developed for the 
+    CS559 Computer Graphics Class at the University of Wisconsin
+    https://graphics.cs.wisc.edu/Courses/559-sp2021/ -->
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../../css/workbook.css">
+        <script src="../../js/resizeIFrames.js"></script>
+    </head>
+    <body>
+        <div class="container container--outer"><div class="maincolumn">
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header"><h1 class="post__title">Page 5: Exercise 4: Environment Maps</h1>
+		</header>
+        
+        
+        
+		<div class="content post__content clearfix"><p>On the previous page, we learned about texture maps that surround objects. On that page, we just looked at them. On this page, we&rsquo;ll use them to fake reflections on objects. This is called <strong>Environment Mapping.</strong> Since all lighting is basically reflections, environment mapping becomes an important method for faking fancy lighting. The required reading deals with environment mapping briefly in Section 11.4.5 (where they refer to it as <em>reflection mapping</em>).</p>
+<p>The key idea of environment mapping is that we use the normal of the surface to figure out what direction the mirror reflection would be coming from, and then use that direction to look up the color in the environment map. Unlike all of the mapping strategies we&rsquo;ve discussed so far, in environment mapping we don&rsquo;t use the UV coordinates from the object: instead we compute the texture coordinates based on the object&rsquo;s normal and the direction of the camera.</p>
+<p>Implementing environment maps is tricky because you have to do the computation of the texture coordinate (which depends on the camera, the object position, and the object normal). And then you have to look up the texture in the environment map. Fortunately, THREE implements this for us! All we have to do is use it. (Well, make sure you understand the concepts since you may be asked about them on the exam).</p>
+<h2 id="using-an-environment-map">Using an Environment Map</h2>
+<p>The basic use of an environment is to make a mirrored object. In THREE, this is as simple as using a material that supports Environment Mapping, and using an appropriate texture with it. <code>MeshStandardMaterial</code> does this. Even <code>MeshBasicMaterial</code> does it.</p>
+<p>Read the <a href="https://threejs.org/docs/#api/en/materials/MeshStandardMaterial.envMap" target="_blank">documentation</a>. You will need to use a <a href="https://threejs.org/docs/#api/en/textures/CubeTexture" target="_blank"><code>CubeTextureMap</code></a>.</p>
+<p>And, as you can guess, you have to do it.</p>
+<p>The example below in 
+    <a href="../../for_students/09-05-01.js" class="for_students">09-05-01.js</a> (
+    <a href="../../for_students/09-05-01.html" class="for_students">09-05-01.html</a>), put an environment mapped object into the scene. Pick an object that is appropriate for environment mapping (a primitive like a sphere or torus is fine). Find an environment map, or paint one yourself. Be sure to put the images into the repo!</p>
+<p>Note: your object will &ldquo;reflect&rdquo; what is in the environment map, not what is in the scene (we&rsquo;ll deal with this later). That&rsquo;s OK for this exercise, but it may look silly to have the green ground plane not reflected in the object (so the bottom of the object won&rsquo;t be green). You can just remove the ground plane (<code>GrWorld</code> has that option). Even better, paint your textures so the bottom has the green in it, so objects look as if they are properly reflecting the ground plane.</p>
+<p>You will want to make the background (skybox) be the environment map - otherwise, it will look like the object is reflecting the wrong thing.</p>
+<iframe
+    title="09-05-01"
+    src="../../for_students/09-05-01.html"
+    class="includebox includebox-standard"
+    width="100%"
+    height="100%"
+    scrolling="no"
+    frameborder="0"
+></iframe>
+
+<p>In the text box 
+    <a href="../../for_students/09-workbook.txt" class="for_students">09-workbook.txt</a>, explain why the object you chose is appropriate for reflection mapping. And give attribution for any textures (like the environment map!).</p>
+<p>If you get an image from the web, be sure to give proper attribution in 
+    <a href="../../for_students/09-workbook.txt" class="for_students">09-workbook.txt</a>.</p>
+<p>Advanced: create a second object that shows a combination of enviornment mapping and bump/normal mapping to make the surface less smooth. You can even add in a material property map so that different parts of the object are more or less shiny. In the text box, explain how you used multiple map types to achieve the effect.</p>
+<h2 id="summary-environment-maps">Summary: Environment Maps</h2>
+<p>Environment maps are an important way to fake fancy lighting effects using simple rendering.</p>
+<p>On <a href="../../docs/6/" class="Next__Page">Next: Exercise 5: Shadow Maps </a>, we&rsquo;ll try out shadow maps, which work in a completely different way.</p>
+
+            
+
+
+        
+        
+        
+        <div class="page-rubric-container">
+    <details class="page__rubric">
+    <summary>Page 5 Rubric (8 points total)</summary>
+    <br/>
+    <div class="page-rubric-grid">
+            <div class="page-rubric-grid-header rubric-box-regular">Points (6):</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-05-01</div>
+                <div class="page-rubric-grid-points rubric-box-regular">3 pt</div>
+                <div class="page-rubric-grid-desc rubric-box-regular">there is a reflective object in the scene that shows the environment map</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-05-01</div>
+                <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
+                <div class="page-rubric-grid-desc rubric-box-regular">environment map matches environment</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-05-01</div>
+                <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+                <div class="page-rubric-grid-desc rubric-box-regular">explanation of why env map is appropriate</div>
+            <div class="page-rubric-grid-header rubric-box-bonus">Advanced points (2) 
+                :</div><div class="page-rubric-grid-box rubric-box-bonus">Box 09-05-01</div>
+                <div class="page-rubric-grid-points rubric-box-bonus">2 pt</div>
+                <div class="page-rubric-grid-desc rubric-box-bonus">combine env map with other map types and explain</div></div>
+    </details>
+    </div>
+			
+			
+		</div>
+	</article>
+</main>
+
+                </div>
+                <div class="sidebar">
+<h2 class="Side_Title">Workbook 9: Fancier Textures and Lighting</h2>
+<p class="Side__Note">Pages:</p>
+<ul class="Side__List">
+    <li class="Side__Item Side__Unselected"><a href="../../">Index (Fancier Textures and Lighting)</a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/1/">1: Fancy Texturing </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/2/">2: Exercise 1: Material Property Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/3/">3: Exercise 2: Bump and Normal Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/4/">4: Exercise 3: Sky Boxes (or: Not-Really-Sky-Boxes and THREE) </a></li>
+        <li class="Side__Item Side__Selected"> 5: Exercise 4: Environment Maps </li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/6/">6: Exercise 5: Shadow Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/7/">7: Multi-Pass Rendering </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/8/">8: Hand-in and Gallery </a></li>
+</ul>
+</div>
+</div>
+    </body>
+</html>

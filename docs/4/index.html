@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    
+<!-- CS559 Workbook Pages - page content &copy; 2021, Michael Gleicher -->
+<!-- This page is part of a Workbook developed for the 
+    CS559 Computer Graphics Class at the University of Wisconsin
+    https://graphics.cs.wisc.edu/Courses/559-sp2021/ -->
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../../css/workbook.css">
+        <script src="../../js/resizeIFrames.js"></script>
+    </head>
+    <body>
+        <div class="container container--outer"><div class="maincolumn">
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header"><h1 class="post__title">Page 4: Exercise 3: Sky Boxes (or: Not-Really-Sky-Boxes and THREE)</h1>
+		</header>
+        
+        
+        
+		<div class="content post__content clearfix"><p>A Sky Box is a big object that surrounds the world on which you put a texture, so the background isn&rsquo;t just a solid color. The idea is that it is infinitely far away (so all regular objects are in front of it).</p>
+<p>A Sky Box is not just a big box (or Sphere) around the objects in the world! It needs to do special things to be &ldquo;infinitely far away&rdquo;. We discussed this in the lecture (video) about SkyBoxes.</p>
+<p><strong>Warning: some of this may not make sense if we haven&rsquo;t talked about Z-Buffers in detail in lecture yet.</strong></p>
+<ol>
+<li>A SkyBox moves with the camera (so you can never get close to/pass through the wall). Think about it: if something is &ldquo;infinitely far away&rdquo; then moving towards it doesn&rsquo;t make it get any closer.</li>
+<li>A SkyBox is drawn with its depth values (for Z-Buffering) to be infinitely far away, so any object drawn is closer than it. Think about it: if something is &ldquo;infinitely far away&rdquo; everything that is finite is closer.</li>
+<li>A SkyBox isn&rsquo;t too huge (because then it might be beyond the far plane of the camera), but it works as if it is infinitely far because it is drawn first and #2. Think about it: &ldquo;infinitely far&rdquo; is beyond the &ldquo;far&rdquo; distance of the camera, so it wouldn&rsquo;t be drawn unless we did something special.</li>
+</ol>
+<p>A real skybox does three things, which aren&rsquo;t obvious how to do in THREE:</p>
+<ol>
+<li>Make the box always be centered around the camera.</li>
+<li>Make it have infinite Z-buffer values (typically this is done by just turning off Z-writing when drawing it, and drawing it first so the clear values are kept).</li>
+<li>Drawing the object first (with #2) so it appears huge (behind everything) even though it isn&rsquo;t.</li>
+</ol>
+<p>Unfortunately, #2 and #3 aren&rsquo;t easy to do in THREE. #2 can be done by writing a custom shader (which we won&rsquo;t get to until next week, or using a hidden parameter), and #3 requires controlling the order of drawing (which goes against the retained mode model).</p>
+<p>Unfortunately, most of the example code for THREE simply makes a big cube (or sphere) - what I called a &ldquo;fake skybox&rdquo; in lecture. The first five tutorials we found online for &ldquo;three.js skybox&rdquo; all did this. But, it turns out that the &ldquo;correct&rdquo; approach is built into THREE.</p>
+<p><strong>Proper sky boxes are built into three!</strong> It does all of the three things for you. All you need to do is assign a <a href="https://threejs.org/docs/#api/en/textures/CubeTexture" target="_blank"><code>CubeTexture</code></a> to be the <a href="https://threejs.org/docs/#api/en/scenes/Scene.background" target="_blank"><code>background</code> of the <code>Scene</code></a>. For the CS559 Framework, we can refer to it with <code>world.scene</code>, given <code>world</code> is of class <code>GrWorld</code>.</p>
+<p>Of course, confirming that the built in SkyBoxes are really SkyBoxes is hard because it&rsquo;s not well documented. You can look at the THREE.JS source code (<a href="../../libs/CS559-Three/src/renderers/webgl/WebGLBackground.js">/libs/CS559-Three/src/renderers/webgl/WebGLBackground.js</a>, around line 59).</p>
+<h2 id="spheres-and-cubes">Spheres and Cubes</h2>
+<p>If you&rsquo;re putting &ldquo;a box&rdquo; around the world, you can choose the shape of the box. Since it&rsquo;s infinitely far away (in principle) and covered with texture and not lit, the shape doesn&rsquo;t matter that much. Both spheres and cubes work well. Cylinders are a less common alternative (but were common 20 years ago). There are pros and cons to each shape. But the differences generally do not outweigh the convenience: if your texture is for a cube or sphere, then use that appropriate geometry. It is possible to change textures from one form to another.</p>
+<p>(Note: when we use THREE&rsquo;s built in Sky Box feature via <code>scene.background</code> it seems that we must use a cube)</p>
+<p>By the way, the texture for a shape (like the cube or sphere) that is designed to look right if your head is at the center of the shape (looking outward) in any direction is called an <strong>environment map</strong> because that is the most common usage of such textures. We&rsquo;ll do environment mapping on the next page. However, for now, don&rsquo;t be confused when we call the texture on the inside of a skybox an &ldquo;Environment Map.&rdquo; And, hopefully you aren&rsquo;t confused that we still call it a box even if it is a sphere or cylinder.</p>
+<p>As you might guess, an environment map for a cube is called a <em>cubic environment map</em>, an environment map for a sphere is called a <em>spherical environment map</em>, etc.</p>
+<p>Since you should be curious&hellip;</p>
+<ul>
+<li>
+<p><code>Cubic Environment Maps</code> are a popular choice because they are easy to author. You just take 6 regular pictures that fit together. You can do this in the real world by getting a camera with a 90 degree field of view lens, and rotating it on a tripod (getting the up and down views can be hard). It is really easy in computer graphics to point the camera in 6 directions. Another advantage of cubic environment maps is that it just uses 12, usual triangles (albeit big ones). The down side is that the corners are father away than the centers of the sides which creates sampling issues, so if you&rsquo;re not careful you can see the seams. Sometimes, all 6 faces are put into one image (see Figure 11.25 of FCG), while other times, the 6 faces are made into 6 separate square images.</p>
+</li>
+<li>
+<p><code>Spherical Environment Maps</code> are a popular choice because all points are the same distance, so the sampling is more uniform. However, there are issues in putting texture coordinates on spheres (things tend to bunch up at the poles if you&rsquo;re not careful). Spherical textures are actually easier than cubic ones to take with a regular camera: you just take a picture of a mirrored ball. Drawing a cubic environment map by approximating the sphere as lot of triangles has some issues - special algorithms exist for spheres. With THREE, you can use a sphere with the correct texture coordinates.</p>
+</li>
+<li>
+<p><code>Cylindrical Environment Maps</code> (sometimes called Panoramic Maps) are an old choice, that was used in Apple&rsquo;s Quicktime VR product in the mid-1990s. The intuition is that the top of the cylinder (ceiling) and bottom (floor) are usually boring, so we treat them as separate pieces. Then the interesting part of the world you get just by turning on one axis. Cylindrical panoramas are easy to capture (just place the camera on a tripod and turn) and don&rsquo;t have the sampling issues of spheres (there are no poles). However, they don&rsquo;t deal with the top and bottom in a uniform way.</p>
+</li>
+</ul>
+<p>In practice, you probably want to use cubic maps if you are making it yourself (since they look like pictures and are easy to understand). But in THREE, it&rsquo;s easy enough to use spheres or cubes (the sphere primitive sets up texture coordinates so that equirectangular maps generally work OK). Understanding the differences between the map types can help you build your intuitions about texturing in general.</p>
+<p>The most common form of images for environments are &ldquo;equirectangular&rdquo; images. This is basically unfolding a sphere map into a rectangle. There used to be a great converter on the web, but it seems to have disappeared. Here is another one I found: <a href="https://jaxry.github.io/panorama-to-cubemap/" target="_blank">Panorama Converter on GitHub</a>. It seems to work, but I haven&rsquo;t tested it extensively. It doesn&rsquo;t give much control over the resulting size of the cube faces, so you might have to resize them. If you find a better tool for converting formats, please post it on Piazza!</p>
+<p>Note: THREE.JS&rsquo;s <a href="https://threejs.org/docs/#api/en/loaders/CubeTextureLoader" target="_blank"><code>CubeTextureLoader</code></a> takes 6 separate images (one for each face of the cube), but be careful because sometimes the images are named incorrectly (front can be the bottom, etc.).</p>
+<p>If you want to understand the conversion process, see <a href="http://paulbourke.net/panorama/cubemaps/" target="_blank">page from Paul Bourke</a>. <a href="http://paulbourke.net/" target="_blank">His site</a> has tons of information of panoramic imaging.</p>
+<h2 id="the-not-really-a-skybox-exercise">The Not-Really-A-SkyBox Exercise</h2>
+<p>Enough things on the web use the term &ldquo;Sky Box&rdquo; (but aren&rsquo;t really &ldquo;Sky Boxes&rdquo;), that we will let you make &ldquo;A Big Box with a texture on it that surrounds your world&rdquo; for this exercise. Just make sure you realize why this isn&rsquo;t really a sky box (which will make for a good exam question).</p>
+<p>This is strange because real SkyBoxes are built in (maybe it&rsquo;s a newer feature?). And really easy - just use a <code>CubeTextureLoader</code> and connect it to the <code>Scene.background</code>.</p>
+<p>So, in this exercise, we make you do it both ways. Do a &ldquo;fake skybox&rdquo;, then do a correct skybox (preferably, using the same environment map). That way you can experiment with the difference. With the fake one, you should be able to fly up close to the wall (maybe even go through it). Put the fake skybox into box 4-1. Put the real skybox into 4-2.</p>
+<p>What you must do:</p>
+<ol>
+<li>Put some objects onto the ground plane. You can use stuff from other exercises, or just some primitives.</li>
+<li>Put a big box (or sphere) around your world (4-1), or use <code>Scene.background</code> (4-2).</li>
+<li>Find (or create) a cubic texture appropriate for a SkyBox, and place it on your big box. Preferably without lighting.</li>
+</ol>
+<p>The big part of this (for the assignment) is #3. As described previously, these textures are commonly called <code>Environment Maps</code>. The idea is they should seamlessly wrap around so if you are in the box, it is what you would see as you looked around from the center. We recommend that if you find something meant for a Sphere, you convert it to a box.</p>
+<p>Don&rsquo;t forget to add the texture to the repo!</p>
+<p>The code goes into 
+    <a href="../../for_students/09-04-01.js" class="for_students">09-04-01.js</a> (
+    <a href="../../for_students/09-04-01.html" class="for_students">09-04-01.html</a>) and 
+    <a href="../../for_students/09-04-02.js" class="for_students">09-04-02.js</a> (
+    <a href="../../for_students/09-04-02.html" class="for_students">09-04-02.html</a>). These two boxes should look really similar (or the same) until you fly up to a wall.</p>
+<iframe
+    title="09-04-01"
+    src="../../for_students/09-04-01.html"
+    class="includebox includebox-standard"
+    width="100%"
+    height="100%"
+    scrolling="no"
+    frameborder="0"
+></iframe>
+
+<iframe
+    title="09-04-02"
+    src="../../for_students/09-04-02.html"
+    class="includebox includebox-standard"
+    width="100%"
+    height="100%"
+    scrolling="no"
+    frameborder="0"
+></iframe>
+
+<h2 id="a-hint-finding-environment-maps">A Hint: Finding Environment Maps</h2>
+<p>To make an environment map, you need to make a full 360 picture - one that covers all directions. Taking these with a camera can be tricky (even if you have a special lens, you have to worry about having your feet in the picture). You can try painting one. Or you can find them on the web.</p>
+<p>Often, if you find an environment map on the web, you will find them in an &ldquo;HDR&rdquo; format (high-dynamic range). We&rsquo;ll discuss HDR later in the semester, but basically, the colors go from 0 to big numbers, rather than from 0-255. If you find one of these, you&rsquo;ll need to convert it. I use PhotoShop, but there are other &ldquo;HDR conversion tools&rdquo; that are free.</p>
+<p>My recommended web converter has gone away. As mentioned above, <a href="https://jaxry.github.io/panorama-to-cubemap/" target="_blank">Panorama Converter on GitHub</a> seems like a possible alternative.</p>
+<p>We can also make environment maps using THREE. If you have a scene in THREE, you can make a special <code>CubeCamera</code> that takes the pictures in all directions you need. The tricky part is saving the images - however, generally you don&rsquo;t have to. You can use them right away. We&rsquo;ll do that later when we do dynamic texture maps.</p>
+<p>Of course, if you get an image from the web, be sure to give proper attribution in 
+    <a href="../../for_students/09-workbook.txt" class="for_students">09-workbook.txt</a>.</p>
+<h2 id="summary-cube-textures">Summary: Cube Textures</h2>
+<p>In this exercise, you made a skybox (or a kind-of skybox). You also learned to use cube textures. This will be very useful for environment maps on <a href="../../docs/5/" class="Next__Page">Next: Exercise 4: Environment Maps </a>.</p>
+
+            
+
+
+        
+        <div class="page-rubric-container">
+    <details class="page__rubric">
+    <summary>Page 4 Rubric (5 points total)</summary>
+    <br/>
+    <div class="page-rubric-grid">
+            <div class="page-rubric-grid-header rubric-box-regular">Points (5):</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-04-01</div>
+                <div class="page-rubric-grid-points rubric-box-regular">3 pt</div>
+                <div class="page-rubric-grid-desc rubric-box-regular">both 4-1 and 4-2 look like a skybox</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-04-01</div>
+                <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+                <div class="page-rubric-grid-desc rubric-box-regular">4-1 is a fake sky box (get close to edge)</div></div>
+    </details>
+    </div>
+			
+			
+		</div>
+	</article>
+</main>
+
+                </div>
+                <div class="sidebar">
+<h2 class="Side_Title">Workbook 9: Fancier Textures and Lighting</h2>
+<p class="Side__Note">Pages:</p>
+<ul class="Side__List">
+    <li class="Side__Item Side__Unselected"><a href="../../">Index (Fancier Textures and Lighting)</a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/1/">1: Fancy Texturing </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/2/">2: Exercise 1: Material Property Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/3/">3: Exercise 2: Bump and Normal Maps </a></li>
+        <li class="Side__Item Side__Selected"> 4: Exercise 3: Sky Boxes (or: Not-Really-Sky-Boxes and THREE) </li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/5/">5: Exercise 4: Environment Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/6/">6: Exercise 5: Shadow Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/7/">7: Multi-Pass Rendering </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/8/">8: Hand-in and Gallery </a></li>
+</ul>
+</div>
+</div>
+    </body>
+</html>

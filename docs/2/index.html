@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    
+<!-- CS559 Workbook Pages - page content &copy; 2021, Michael Gleicher -->
+<!-- This page is part of a Workbook developed for the 
+    CS559 Computer Graphics Class at the University of Wisconsin
+    https://graphics.cs.wisc.edu/Courses/559-sp2021/ -->
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../../css/workbook.css">
+        <script src="../../js/resizeIFrames.js"></script>
+    </head>
+    <body>
+        <div class="container container--outer"><div class="maincolumn">
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header"><h1 class="post__title">Page 2: Exercise 1: Material Property Maps</h1>
+		</header>
+        
+        
+        
+		<div class="content post__content clearfix"><p>Up until now, we&rsquo;ve only been using texture to change colors. However, we can use a texture to control just about any property of a material. If you look at the documentation for <a href="https://threejs.org/docs/#api/en/materials/MeshStandardMaterial" target="_blank"><code>MeshStandardMaterial</code></a>, you can see a lot of the things we control about materials (like roughness, emission, and metalness) can be controlled with a map as well instead of giving a single value for the entire object.</p>
+<p>For this exercise, pick one (or more) of those properties, and make a map that controls the property over the object. You need to make something where it is obvious what is going on. This means creating a texture with variation, having an appropriate object to show (a primitive like a sphere is often good enough), and maybe some adjustments to the lighting. Try using the property realistically, for example making the metal parts of an object more &ldquo;metal&rdquo; than the rest.</p>
+<p>Note: to show that you haven&rsquo;t just changed the colors, you probably want to make either the light or the object move (with animation). But you should know how to do that from previous workbooks.</p>
+<p>To show that you really understand the lighting effects and how they are influenced by the material properties (which are, in turn, specified by the map), in the text box explain what material property you are altering, and how this varying property can be seen in the resulting pictures. Be specific (tell us what to look for, and why it is there).</p>
+<p>You will probably want to create your own texture map. Make sure you include it in the repository.</p>
+<p>You can find the starter code in 
+    <a href="../../for_students/09-02-01.js" class="for_students">09-02-01.js</a> (
+    <a href="../../for_students/09-02-01.html" class="for_students">09-02-01.html</a>)</p>
+<iframe
+    title="09-02-01"
+    src="../../for_students/09-02-01.html"
+    class="includebox includebox-standard"
+    width="100%"
+    height="100%"
+    scrolling="no"
+    frameborder="0"
+></iframe>
+
+<h2 id="summary-material-property-maps">Summary: Material Property Maps</h2>
+<p>Material property maps are a simple kind of map. We&rsquo;ll talk about variants of normal maps on <a href="../../docs/3/" class="Next__Page">Next: Exercise 2: Bump and Normal Maps </a>.</p>
+
+            
+
+
+        
+        
+        <div class="page-rubric-container">
+    <details class="page__rubric">
+    <summary>Page 2 Rubric (6 points total)</summary>
+    <br/>
+    <div class="page-rubric-grid">
+            <div class="page-rubric-grid-header rubric-box-regular">Points (6):</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-02-01</div>
+                <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+                <div class="page-rubric-grid-desc rubric-box-regular">an appropriate scene (objects, lighting, …)</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-02-01</div>
+                <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+                <div class="page-rubric-grid-desc rubric-box-regular">clear use of mat prop map</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-02-01</div>
+                <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+                <div class="page-rubric-grid-desc rubric-box-regular">material map use explained</div></div>
+    </details>
+    </div>
+			
+			
+		</div>
+	</article>
+</main>
+
+                </div>
+                <div class="sidebar">
+<h2 class="Side_Title">Workbook 9: Fancier Textures and Lighting</h2>
+<p class="Side__Note">Pages:</p>
+<ul class="Side__List">
+    <li class="Side__Item Side__Unselected"><a href="../../">Index (Fancier Textures and Lighting)</a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/1/">1: Fancy Texturing </a></li>
+        <li class="Side__Item Side__Selected"> 2: Exercise 1: Material Property Maps </li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/3/">3: Exercise 2: Bump and Normal Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/4/">4: Exercise 3: Sky Boxes (or: Not-Really-Sky-Boxes and THREE) </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/5/">5: Exercise 4: Environment Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/6/">6: Exercise 5: Shadow Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/7/">7: Multi-Pass Rendering </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/8/">8: Hand-in and Gallery </a></li>
+</ul>
+</div>
+</div>
+    </body>
+</html>

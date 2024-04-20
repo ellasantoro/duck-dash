@@ -1,0 +1,45 @@
+Wisc ID: isantoro
+GitHub ID: ellasantoro
+
+[X] correct WB9 Canvas Assignment submission [none]: 
+[X] correct WB9G Canvas Assignment submission on time [none]: 
+[X] (at least one) texture you made by painting (described in the readme) [none]: coin on page 09-02-01 uses my own drawing, it is described in the file.
+                                                                                  donut in page 09-02-01 also uses my own drawing for the color map (not for bump map)
+[X] (at least one) texture you found on the web (described in readme with proper attribution) [none]: skybox uses an image on the web, so does bump map for the donut.
+                                                                                                      all images have attribution in the files that they are used in.
+[X] (at least one) a texture you made by taking a picture (described in the readme) [none]: the first box with the picture frame is my own picture that I took in a museum. It is
+                                                                                            fully explained in the file it is used in.
+[X] identifyable as a real object [09-01-01]: painting in a frame in the Norton Simon museum
+[X] texture makes it look like a real object [09-01-01]: 
+[X] an appropriate scene (objects, lighting, …) [09-02-01]: 
+[X] clear use of mat prop map [09-02-01]: 
+[X] material map use explained [09-02-01]: included in the file - please read the comments
+[X] appropriate scene (objects and lighting) [09-03-01]: 
+[X] bump map object looks “bump mappy” [09-03-01]: iron block has deep ridges
+[X] confirm bump map is a bump map (1 channel) [09-03-01]: 
+[X] normal map object looks “normal mappy” [09-03-01]: 
+[X] confirm normal map is a normal map (3 channels) [09-03-01]: 
+[X] explaination of how we can see the effects [09-03-01]: see file comments
+[X] both 4-1 and 4-2 look like a skybox [09-04-01]: 
+[X] 4-1 is a fake sky box (get close to edge) [09-04-01]: 
+[X] there is a reflective object in the scene that shows the environment map [09-05-01]: 
+[X] environment map matches environment [09-05-01]: 
+[X] explanation of why env map is appropriate [09-05-01]: see file comments
+[X] there are shadows [09-06-01]: 
+[X] there are shadows of one object onto another object [09-06-01]: 
+[X] there is an object reflecting the environment (checks for code using current framework) [09-07-01]: 
+[X] the reflections show the scene (not just the background) [09-07-01]: 
+[X] you can see moving objects in the reflection [09-07-01]: 
+[X] not the same as the example (checks for code using current framework) [09-07-01]: 
+[X] combine bump/normal with color map, with explanation [09-03-01]: donut combines normal w/ color map - see file for explanation
+[X] combine env map with other map types and explain [09-05-01]: combined env map w/ bump map to create glass block - see file for explanation
+[ ] video screen showing what a camera moving in the scene sees [09-07-01]: 
+
+If you have loaded any geometry from OBJ files, use the space below to credit your source for each file. Be sure to include a confirmation that you are permitted to use this asset (e.g., it is released under a Creative Commons license).
+
+You can follow this format, or something similar:
+
+- an-example-file.obj
+  - source: https://graphics.cs.wisc.edu/Courses/559-sp2021/
+  - author: username123
+ - license: CC BY 2.0

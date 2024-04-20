@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    
+<!-- CS559 Workbook Pages - page content &copy; 2021, Michael Gleicher -->
+<!-- This page is part of a Workbook developed for the 
+    CS559 Computer Graphics Class at the University of Wisconsin
+    https://graphics.cs.wisc.edu/Courses/559-sp2021/ -->
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../../css/workbook.css">
+        <script src="../../js/resizeIFrames.js"></script>
+    </head>
+    <body>
+        <div class="container container--outer"><div class="maincolumn">
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header"><h1 class="post__title">Page 6: Exercise 5: Shadow Maps</h1>
+		</header>
+        
+        
+        
+		<div class="content post__content clearfix"><p>In class, we&rsquo;ll learn how shadow maps work. Fortunately, you don&rsquo;t have to implement them (there are some tricky details), since they are built into THREE.</p>
+<p>Shadow maps are different than other kinds of maps. They are pictures made from cameras positioned at the light sources. We don&rsquo;t use them for colors (or surface properties), we use them for depth testing (to see if the camera at the light source can see each point in the scene). The lookups are depth tests that turn light on and off. This will be explained in class, and is discussed in Section 11.4.4 of the reading FCG4 Chapter 11.</p>
+<p>Implementing shadow maps can be tricky. Fortunately, they are built into THREE.</p>
+<p>THREE makes it pretty easy to use shadow maps. All you need to do is:</p>
+<ol>
+<li>Make sure that your renderer has <code>shadowMap.enabled</code> set to true.</li>
+<li>Make sure that you set the appropriate properties for objects. Some objects should cast shadows, and some objects should receive shadows. You need to use the <code>castShadow</code> and <code>receiveShadow</code> of objects.</li>
+<li>Make sure your lights are set to <code>castShadow</code>. It&rsquo;s easiest to use shadows with spot lights (for reasons we&rsquo;ll discuss in class).</li>
+</ol>
+<p>That&rsquo;s pretty much it. There are plenty of parameters and options you can tune to make things look the way you want.</p>
+<p>For this exercise, all you need to do is make shadows in the scene below. Note: you&rsquo;ll have to make your own spotlight. You are welcome to remove my objects and put in your own. The file is 
+    <a href="../../for_students/09-06-01.js" class="for_students">09-06-01.js</a> (
+    <a href="../../for_students/09-06-01.html" class="for_students">09-06-01.html</a>). Of course, you can use this as an opportunity to experiment with more lights and shadows.</p>
+<p>It needs to be obvious that one object casts a shadow on another (besides the ground plane). So, in the sample scene, make sure to place the light far enough above the ground that the spinning hexagon casts a shadow on the cube and the knot.</p>
+<iframe
+    title="09-06-01"
+    src="../../for_students/09-06-01.html"
+    class="includebox includebox-standard"
+    width="100%"
+    height="100%"
+    scrolling="no"
+    frameborder="0"
+></iframe>
+
+<p>After you&rsquo;ve done this exercise, go on to <a href="../../docs/7/" class="Next__Page">Next: Multi-Pass Rendering </a>.</p>
+
+            
+
+
+        
+        <div class="page-rubric-container">
+    <details class="page__rubric">
+    <summary>Page 6 Rubric (5 points total)</summary>
+    <br/>
+    <div class="page-rubric-grid">
+            <div class="page-rubric-grid-header rubric-box-regular">Points (5):</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-06-01</div>
+                <div class="page-rubric-grid-points rubric-box-regular">3 pt</div>
+                <div class="page-rubric-grid-desc rubric-box-regular">there are shadows</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-06-01</div>
+                <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+                <div class="page-rubric-grid-desc rubric-box-regular">there are shadows of one object onto another object</div></div>
+    </details>
+    </div>
+			
+			
+		</div>
+	</article>
+</main>
+
+                </div>
+                <div class="sidebar">
+<h2 class="Side_Title">Workbook 9: Fancier Textures and Lighting</h2>
+<p class="Side__Note">Pages:</p>
+<ul class="Side__List">
+    <li class="Side__Item Side__Unselected"><a href="../../">Index (Fancier Textures and Lighting)</a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/1/">1: Fancy Texturing </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/2/">2: Exercise 1: Material Property Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/3/">3: Exercise 2: Bump and Normal Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/4/">4: Exercise 3: Sky Boxes (or: Not-Really-Sky-Boxes and THREE) </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/5/">5: Exercise 4: Environment Maps </a></li>
+        <li class="Side__Item Side__Selected"> 6: Exercise 5: Shadow Maps </li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/7/">7: Multi-Pass Rendering </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/8/">8: Hand-in and Gallery </a></li>
+</ul>
+</div>
+</div>
+    </body>
+</html>

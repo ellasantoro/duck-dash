@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    
+<!-- CS559 Workbook Pages - page content &copy; 2021, Michael Gleicher -->
+<!-- This page is part of a Workbook developed for the 
+    CS559 Computer Graphics Class at the University of Wisconsin
+    https://graphics.cs.wisc.edu/Courses/559-sp2021/ -->
+    <head>
+	<meta name="generator" content="Hugo 0.121.1">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./css/workbook.css">
+        <script src="./js/resizeIFrames.js"></script>
+    </head>
+    <body>
+        <div class="container container--outer"><div class="maincolumn">
+
+
+<main class="main list" role="main">
+	<header class="main__header">
+		<h1 class="main__title">Workbook 9: Fancier Textures and Lighting</h1>
+	</header>
+	<div class="content main__content clearfix">
+        
+
+        <p>This workbook is due on Wednesday, April 10, 2024.</p>
+<h2>Learning Goals</h2>
+<ol>
+    <li>To learn about how local lighting is computed, and see how it is used in a practical system.</li>
+    <li>To learn about types of texturing beyond color maps, and see how they are used.</li>
+    <li>To see how lighting and texturing is used in a practical graphics system.</li>
+    <li>To try using various lighting and texturing features to create appearances.</li>
+    <li>To gain some experience using THREE.js and the class software framework.</li>
+</ol>
+
+            <p>This week we&rsquo;ll do some more texturing, try out fancier versions of texturing and see how this works with lighting.</p>
+<p>THREE makes fancy texture mapping very easy. A lot of things that are hard to program are built in and made convenient. Most of the important kinds of texture mapping we need to do are built in to THREE (usually in the materials). This is good news if you want to use advanced texturing - you don&rsquo;t need to understand the details of how it works, the implementors of THREE figured it out for you. Even better they all work together: you can use a physically-based material with a texture map, environment map, property map, shadow map, and bump map (and maybe even more features) just by specifying the parameters!</p>
+<p>This is a slight problem for class: we have no way to know if you are really understanding how these different things work. So, we&rsquo;re going to trust you. Watch the lecture videos, read the readings, experiment with different parameters, shapes and maps. Be thankful that you don&rsquo;t actually have to code up the math for each of these methods.</p>
+<h2 id="readings">Readings</h2>
+<p>The main source of the material in this workbook are the lectures.</p>
+<p>You will undoubtedly need to look at the <a href="https://threejs.org/docs" target="_blank">THREE documentation</a>. You may also want to look at the <a href="https://cs559.github.io/CS559-Framework23/" target="_blank">framework code documentation</a>. The documentation is generated from the comments in the code, so you can probably just get by with reading the code.</p>
+<p>To get a little deeper into how things work, you will want to do some reading.</p>
+<ul>
+<li>FCG4 Chapter 10 (was in prior workbooks) has a concise and complete discussion of basic lighting. It is a great way to review what we discuss in class. Section 10.3 (Artistic Shading) is a more advanced topic. While lighting is not directly part of the exercises of the workbook, it is a topic that you will need to understand (both for programming and for the exams). We will also do more with it in coming weeks.</li>
+<li>FCG4 Chapter 11 was a reading for last week. Sections 11.1 and 11.2 cover the basics of texture mapping. Section 11.3 discusses the filtering issues (as we talked about in class), including mip mapping and anisotropy. Section 11.4 talks (briefly) about the advanced texturing concepts in the exercises of this workbook.</li>
+<li>FCG4 Chapter 6 (optional - for advanced students only!) has more details about texturing than you probably want to know. It will tell you about many different kinds of mapping, lots of different algorithms for each different problems, and lots of pictures of how these things can be used in practice. It&rsquo;s fun to look at the pictures and be inspired about what kinds of cool stuff can be done.</li>
+<li>FCG4 Chapter 7 (optional - for advanced students only!) is a whole chapter on shadows. We&rsquo;ll only talk about Shadow Maps (Section 7.4). Even with Shadow Maps, the RTR book will give you more details than you could imagine, and tell you some things that they&rsquo;ve done in recent (well, recent of the time the book was written) games.</li>
+</ul>
+<h2 id="exercises">Exercises</h2>
+<p>The requirements for this workbook are relatively easy. On most pages, we simply ask you to use a particular kind of texture. In most cases, this requires you to pick some object, pick some texture, and write a very minimal amount of code to attach the two. We encourage you to experiment: see how the parameters change things, try different kinds of images for your textures, etc. But we can&rsquo;t really check that you&rsquo;ve done this. The requirements are pretty minimal.</p>
+<p>It is your responsibility to make sure that your scene shows off the texturing feature that it is supposed to. For example, if you are showing off the use of environment maps to simulate reflections, make sure that you have a shiny object that reflects things (and an environment map that give something to be seen in the reflections). You may want to make your objects move in order to show off some of the lighting effects, or choose object views that make things clear (for example, in lecture I showed off when bump mapping becomes invisible). If you think that its not clear that you are using the required effect, you may want to describe (in the text box below the exercise) what we should be seeing and why it shows off the feature.</p>
+<p>You will need to find/create your own texture maps. Over the course of the assignment, you will need a bunch of texture maps. Over the whole assignment you must use each of these creation methods at least once:</p>
+<ol>
+<li>A texture you made yourself by painting (digital painting, using a painting program/photo editor)</li>
+<li>A texture that you got from the web (document where you found it, and confirm that it is free to use)</li>
+<li>A texture that is a photograph (that you took) of a real object</li>
+</ol>
+<p>You need to explain how you used each of these creation methods in 
+    <a href="./for_students/09-workbook.txt" class="for_students">09-workbook.txt</a> to get credit.</p>
+<p>Don&rsquo;t forget to include the textures you use in your repo and push them to GitHub!</p>
+<p>In order to the exercises in the workbook, you might need to put an extra object in your scenes.</p>
+<p>If you want to load in objects from OBJ or FBX files, that is OK (but optional). Make sure to include the objects in your repo, and document where you got them from in 
+    <a href="./for_students/09-workbook.txt" class="for_students">09-workbook.txt</a>. You probably want to use the loader code built in the framework. Please choose objects that have appropriate licensing and be sure to give proper attribution.</p>
+<h2 id="a-note-on-textures">A Note on Textures</h2>
+<p>Please be reasonable with your textures. Because 180+ students are uploading files for grading, it uses up a lot of space very quickly. You don&rsquo;t need massive texture files. When you find textures on the web (especially environment textures) they tend to be huge. Please choose small sized textures, or shrink them to reasonable size if need be. (it is very unlikely that you need a texture that is more than 1MB).</p>
+<p>And please use compressed file formats (e.g., <code>.png</code> or <code>.jpg</code>).</p>
+<p>You do need to add/commit textures to your repo, so they get pushed to GitHub.</p>
+<p>If you get a texture from someplace, you need to give proper attribution. Please give it in the attribution box 
+    <a href="./for_students/09-workbook.txt" class="for_students">09-workbook.txt</a>.</p>
+<h2 id="rubric-for-grading">Rubric for Grading</h2>
+<p>The requirements are pretty straightforward. You really only need to add a few lines on top of things you already know how to do.</p>
+<p>Assessing effort beyond the minimum is difficult for the graders: it&rsquo;s too subjective, and not necessarily a measure of your learning about graphics. For example, you might make a really cool scene just because you picked an nice environment map background from <a href="https://polyhaven.com/" target="_blank">Poly Haven</a>; in fact, that might look nicer than a simple one someone made themselves. Therefore, there are few advanced point opportunities in this assignment.</p>
+<h2 id="document-the-assignments-well">Document the assignments well</h2>
+<p>In this workbook, the assignments are more open ended.
+For this reason, it is important that you document well what you did.
+Please do this in the text box 
+    <a href="./for_students/09-workbook.txt" class="for_students">09-workbook.txt</a>.</p>
+<p>In particular, be sure to say where you get your textures from. It&rsquo;s OK to get them from the web - as long as they are freely available, and you give proper attribution. If you painted them yourself, say so. We&rsquo;d prefer to know how (what program did you use?). Please put attributions in 
+    <a href="./for_students/09-workbook.txt" class="for_students">09-workbook.txt</a></p>
+<h2 id="get-started">Get Started</h2>
+<p>Everything begins on <a href="./docs/1/">Page &nbsp;1&nbsp; (Fancy Texturing)</a>.</p>
+
+        
+        <h2>Rubric</h2>
+            
+<div class="page-rubric-container">
+<details class="page__rubric">
+<summary>Workbook Rubric (93 points total)</summary>
+<br/>
+<div class="page-rubric-grid">
+        <div class="page-rubric-grid-header rubric-box-regular">Points (87):</div><div class="page-rubric-grid-box rubric-box-regular"></div>
+            <div class="page-rubric-grid-points rubric-box-regular">20 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">correct WB9 Canvas Assignment submission</div><div class="page-rubric-grid-box rubric-box-regular"></div>
+            <div class="page-rubric-grid-points rubric-box-regular">20 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">correct WB9G Canvas Assignment submission on time</div><div class="page-rubric-grid-box rubric-box-regular"></div>
+            <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">(at least one) texture you made by painting (described in the readme)</div><div class="page-rubric-grid-box rubric-box-regular"></div>
+            <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">(at least one) texture you found on the web (described in readme with proper attribution)</div><div class="page-rubric-grid-box rubric-box-regular"></div>
+            <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">(at least one) a texture you made by taking a picture (described in the readme)</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-01-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">3 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">identifyable as a real object</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-01-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">3 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">texture makes it look like a real object</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-02-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">an appropriate scene (objects, lighting, …)</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-02-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">clear use of mat prop map</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-02-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">material map use explained</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-03-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">appropriate scene (objects and lighting)</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-03-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">bump map object looks “bump mappy”</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-03-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">confirm bump map is a bump map (1 channel)</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-03-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">normal map object looks “normal mappy”</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-03-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">confirm normal map is a normal map (3 channels)</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-03-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">explaination of how we can see the effects</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-04-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">3 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">both 4-1 and 4-2 look like a skybox</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-04-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">4-1 is a fake sky box (get close to edge)</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-05-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">3 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">there is a reflective object in the scene that shows the environment map</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-05-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">environment map matches environment</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-05-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">explanation of why env map is appropriate</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-06-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">3 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">there are shadows</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-06-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">there are shadows of one object onto another object</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-07-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">there is an object reflecting the environment (checks for code using current framework)</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-07-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">the reflections show the scene (not just the background)</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-07-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">2 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">you can see moving objects in the reflection</div><div class="page-rubric-grid-box rubric-box-regular">Box 09-07-01</div>
+            <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-regular">not the same as the example (checks for code using current framework)</div>
+    <div class="page-rubric-grid-header rubric-box-bonus">Advanced points (6):</div><div class="page-rubric-grid-box rubric-box-bonus">Box 09-03-01</div>
+            <div class="page-rubric-grid-points rubric-box-bonus">1 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-bonus">combine bump/normal with color map, with explanation</div><div class="page-rubric-grid-box rubric-box-bonus">Box 09-05-01</div>
+            <div class="page-rubric-grid-points rubric-box-bonus">2 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-bonus">combine env map with other map types and explain</div><div class="page-rubric-grid-box rubric-box-bonus">Box 09-07-01</div>
+            <div class="page-rubric-grid-points rubric-box-bonus">3 pt</div>
+            <div class="page-rubric-grid-desc rubric-box-bonus">video screen showing what a camera moving in the scene sees</div></div>
+</details>
+</div>
+        
+        
+        
+        <h3 class="get__started">Get started on 
+            <a href="./docs/1/">Page &nbsp;1&nbsp; (Fancy Texturing)</a>!</h3>
+        
+	</div>
+</main>
+
+                </div>
+                <div class="sidebar">
+<h2 class="Side_Title">Workbook 9: Fancier Textures and Lighting</h2>
+<p class="Side__Note">Pages:</p>
+<ul class="Side__List">
+    <li class="Side__Item Side__Selected">Index (Fancier Textures and Lighting) </li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/1/">1: Fancy Texturing </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/2/">2: Exercise 1: Material Property Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/3/">3: Exercise 2: Bump and Normal Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/4/">4: Exercise 3: Sky Boxes (or: Not-Really-Sky-Boxes and THREE) </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/5/">5: Exercise 4: Environment Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/6/">6: Exercise 5: Shadow Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/7/">7: Multi-Pass Rendering </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/8/">8: Hand-in and Gallery </a></li>
+</ul>
+</div>
+</div>
+    </body>
+</html>
