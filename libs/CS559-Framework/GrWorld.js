@@ -27,6 +27,7 @@ import { FlyControls } from "../CS559-Three/examples/jsm/controls/FlyControls.js
 import { VRHelper } from './VRHelper.js'
 import Stats from './Stats.js'
 
+
 // alert("look at TODO in GrWorld");
 
 /** Things to do post 2021  TODO
@@ -147,7 +148,7 @@ export class GrWorld {
             this.groundplane = new SimpleGroundPlane(
                 params.groundplanesize || 5,
                 0.2,
-                params.groundplanecolor || "darkgreen"
+                params.groundplanecolor || "#416935"
             );
         }
         if (this.groundplane)

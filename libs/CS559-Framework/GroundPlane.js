@@ -21,7 +21,7 @@ import { GrObject } from "./GrObject.js";
 // a global variable to keep track of how many objects we create
 // this allows us to give unique names
 let numberOfGrounds = 0;
-
+let mossy = new T.TextureLoader().load("./images/mossyFloor.jpeg");
 import * as T from "../CS559-Three/build/three.module.js";
 
 /**
@@ -40,7 +40,7 @@ export class SimpleGroundPlane extends GrObject {
   constructor(size = 5, thickness = 0.2, color = "white") {
     // we need to create the parts before we can call "super"
     const geometry = new T.BoxGeometry(size * 2, thickness, size * 2);
-    const material = new T.MeshStandardMaterial({ color: color, roughness: 0.9 });
+    const material = new T.MeshStandardMaterial({ color: "#556e51", roughness: 0.9,map: mossy, bumpMap: mossy, bumpScale: 10 });
     const mesh = new T.Mesh(geometry, material);
     numberOfGrounds += 1;
 

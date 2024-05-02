@@ -2,7 +2,7 @@
 /* global setting - everything gets some defaults */
 html {
   font-family: Cambria, Georgia, serif;
-  background: lightgray; }
+  background: #99a887; }
 
 /* make the body */
 body {
@@ -25,6 +25,9 @@ h1, h2, h3, h4, h5, h6 {
   flex-wrap: wrap-reverse;
   align-items: flex-end; }
 
+  a{
+    color: #39663e
+  }
 /* this is the main body text */
 .maincolumn {
   flex-grow: 1;
@@ -83,7 +86,7 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none; }
 
 .Side__Selected {
-  background-color: darkred;
+  background-color: #42522f;
   color: white; }
 
 /* make the notes on the side look better */
@@ -97,13 +100,17 @@ h1, h2, h3, h4, h5, h6 {
 .sidebar h2 {
   margin: 0; }
 
+.link {
+  color: #39663e;
+  font-weight: 1000; 
+}
 /* in general, underlined links look terrible, so avoid them */
 a:link {
-  text-decoration: none;
+  color: #39663e;
   font-weight: 700; }
 
 a:hover {
-  color: darkred; }
+  color: #42522f}
 
 /* make the "for students" links look better 
    (avoid underlines since they usually have dots in them
@@ -128,6 +135,7 @@ a:hover {
 .highlight pre, .highlight code {
   font-size: 1rem;
   font-family: consolas, monaco, monospace;
+  color: #42522f;
   overflow: scroll; }
 
 /************************************************************************/
@@ -223,7 +231,7 @@ li {
     display: block; }
 
 .expand__button {
-  color: darkred;
+  color: #39663e;
   font-style: italic; }
 
 .dimbox {
@@ -260,7 +268,7 @@ li {
   margin: 1rem 0rem 1rem 0rem;
   padding: 1rem;
   border: 1px solid darkslategray;
-  background-color: #F0E59f; }
+  background-color: #a8b895; }
 
 .page-rubric-grid {
   border: 1px solid darkslategray;
