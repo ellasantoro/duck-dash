@@ -672,7 +672,7 @@ function respawn() {
     //reset camera, duck, and dog positions
     world.camera.position.set(6.5, 13, 26);
     duck.objects[0].position.set(5, 0.5, 5);
-    dog.objects[0].position.set(-10, 0.5, -10);
+    dog.objects[0].position.set(-10, 0.5, -5);
     //reset the score variable and the HTML that shows the score.
     scoreVal = 0;
     scoreText1.innerText = "" + scoreVal;
@@ -731,7 +731,7 @@ function checkCollision() {
 
     //checking for if the duck is colliding with the dog. simply used position for this as I found the boxes were finicky. used a tolerance for 0.2 so the collision trigger
     //isn't too sensitive. make sure to take into account x and z position (didn't want to take into account y position if it was above 2.5, i.e. the dog cant eat the duck if its on a crate of stack 2 or higher)
-    if (Math.abs(duck.objects[0].position.x - dog.objects[0].position.x) <= 0.2 && Math.abs(duck.objects[0].position.z - dog.objects[0].position.z) <= 0.5 && duck.objects[0].position.y <= 2.5) {
+    if (Math.abs(duck.objects[0].position.x - dog.objects[0].position.x) <= 0.6 && Math.abs(duck.objects[0].position.z - dog.objects[0].position.z) <= 0.5 && duck.objects[0].position.y <= 2.5) {
         //if the collision happens, the duck has died, and we should display the you died message.
         isDead = true;
         displayYouDiedMessage();
