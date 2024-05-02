@@ -1,0 +1,16 @@
+Professor Wu mentioned on piazza we should submit a TXT file describing how to interact with and explaining advanced things:
+My code is very heavily documented, so all advanced things can be found in the code inline. As for how to interact, if you use open my 
+repository and right click index.html and open with live server (using VSCode live server extension), there are pages similar to our WBs that have
+explanations of how to interact. Everything can be found on those pages.
+
+How to interact
+Space - jump, you are able to double jump around tall crate stacks to jump on top of them, the dog can't get you
+        if you are on a crate of stack 2 or higher
+W - move north
+A - move east
+S - move south
+D - move west
+Click - click on dog to make it go back a few steps
+
+
+Let me know if you have any questions!
