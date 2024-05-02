@@ -14,3 +14,5 @@ Click - click on dog to make it go back a few steps
 
 
 Let me know if you have any questions!
+
+GitHub repository: https://github.com/ellasantoro/duck-game
