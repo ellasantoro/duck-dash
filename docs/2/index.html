@@ -9,132 +9,85 @@
 <head>
     <meta name="generator" content="Hugo 0.121.1">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./css/workbook.css">
-    <script src="./js/resizeIFrames.js"></script>
+    <link rel="stylesheet" href="../css/workbook.css"> <!-- Updated path -->
+    <script src="../js/resizeIFrames.js"></script> <!-- Updated path -->
 </head>
 
 <body>
     <header class="top-nav">
         <nav class="top-nav__menu">
             <ul class="top-nav__list">
-                <li class="top-nav__item top-nav__unselected"><a href="./index.html">1. Duck Dash</a></li>
+                <li class="top-nav__item top-nav__unselected"><a href="../index.html">1. Duck Dash</a></li> <!-- Updated path -->
                 <li class="top-nav__item top-nav__selected">2. Documentation & Information</li>
-                <li class="top-nav__item top-nav__unselected"><a href="./docs/3/">3. Features</a></li>
+                <li class="top-nav__item top-nav__unselected"><a href="./3/index.html">3. Features</a></li> <!-- Updated path -->
             </ul>
         </nav>
     </header>
     <div class="container container--outer">
         <div class="maincolumn">
-
-
             <main class="main list" role="main">
                 <header class="main__header">
                     <h1 class="main__title">Documentation & Information</h1>
                 </header>
                 <div class="content main__content clearfix">
-
-
                     <p>This project is created by Ella Santoro and mentored by Alex Peseckis</p>
                     <h2>Game Layout</h2>
                     <ol>
-                        <li>The game follows two enemies: a duck (controlled by the user) and a dog in the neighborhood
-                        </li>
+                        <li>The game follows two enemies: a duck (controlled by the user) and a dog in the neighborhood.</li>
                         <li>The duck loves shiny things and likes to steal all the coins that humans have dropped!</li>
-                        <li>The duck is able to jump onto crates to escape the dog - but only if the crates are high
-                            enough! Coins may
-                            also land on top of crates.</li>
-                        <li>Falling off of the platform will result in a decremented score, but gaining a coin will
-                            result in an incremented score.</li>
-                        <li>If the dog is coming a little too close, the duck can push the dog back a few steps by
-                            clicking on it.</li>
-                        <li>If the dog catches up, the duck will die, and you will be presented with the option to play
-                            again!</li>
+                        <li>The duck is able to jump onto crates to escape the dog - but only if the crates are high enough! Coins may also land on top of crates.</li>
+                        <li>Falling off of the platform will result in a decremented score, but gaining a coin will result in an incremented score.</li>
+                        <li>If the dog is coming a little too close, the duck can push the dog back a few steps by clicking on it.</li>
+                        <li>If the dog catches up, the duck will die, and you will be presented with the option to play again!</li>
                     </ol>
                     <h2>Game Details & Functionality</h2>
-                    <p>This game was created using THREE.js and borrows Professor Michael Gleicher's CS559 Framework provided in UW-Madison's Computer Graphics Course.
-                    </p>
+                    <p>This game was created using THREE.js and borrows Professor Michael Gleicher's CS559 Framework provided in UW-Madison's Computer Graphics Course.</p>
                     <ol>
                         <li>Game mechanics and user (key and click) input in 3D using THREE.js</li>
-                        <li>Keeping score in game by combining game mechanics in 3D with score tracking, as well as
-                            connecting HTML to JS to update score</li>
-                        <li>Continuous game: game can be replayed an infinite number of times by clicking the respawn
-                            button, which clears score, returns camera position, returns sprite positions, and clears
-                            coin positions</li>
-                        <li>Using imported models to create animation - accessing nodes of a model to make the
-                            (dog,duck) models appear as though they are running by rotating leg nodes that were
-                            extracted from a GLTF file</li>
+                        <li>Keeping score in game by combining game mechanics in 3D with score tracking, as well as connecting HTML to JS to update score</li>
+                        <li>Continuous game: game can be replayed an infinite number of times by clicking the respawn button, which clears score, returns camera position, returns sprite positions, and clears coin positions</li>
+                        <li>Using imported models to create animation - accessing nodes of a model to make the (dog, duck) models appear as though they are running by rotating leg nodes that were extracted from a GLTF file</li>
                         <li>Creating leg animation only when the user is moving the duck</li>
-                        <li>Creating movement functionality so that the duck cannot jump higher than a specific amount,
-                            which is based on whether or not they are on the ground or on a crate, ensuring that the
-                            duck can not just run on a grid, but can run diagonally as well</li>
-                        <li>Handling collisions between duck and dog, and duck and box so that the duck can actually
-                            jump on top of the box and not intersect it</li>
-                        <li>Creating an ending "screen" to siginify the game has ended with a recap of score</li>
+                        <li>Creating movement functionality so that the duck cannot jump higher than a specific amount, which is based on whether or not they are on the ground or on a crate, ensuring that the duck cannot just run on a grid, but can run diagonally as well</li>
+                        <li>Handling collisions between duck and dog, and duck and box so that the duck can actually jump on top of the box and not intersect it</li>
+                        <li>Creating an ending "screen" to signify the game has ended with a recap of score</li>
                         <li>Advanced 3D Shader to simulate a pond</li>
-                        <li>Making the dog's position and rotation angle relative to where the user moves the duck, this
-                            way the dog is not just facing one direction the entire time</li>
-                        <li>Texture mapping, object creation, using vertices for building roofs, other demonstrated
-                            concepts from class.</li>
-                        </li>
+                        <li>Making the dog's position and rotation angle relative to where the user moves the duck, this way the dog is not just facing one direction the entire time</li>
+                        <li>Texture mapping, object creation, using vertices for building roofs, other demonstrated concepts from class.</li>
                     </ol>
                     <h2 id="readings">Documentation</h2>
-                    <p>Although the code was written by me, I have utilized the following resources for help and for
-                        model/texture:</p>
+                    <p>Although the code was written by me, I have utilized the following resources for help and for model/texture:</p>
                     <h3>Models</h3>
-                    <p> full attribution can be found under the individual model files in the model folder of the
-                        repository.</p>
+                    <p>Full attribution can be found under the individual model files in the model folder of the repository.</p>
                     <ul>
-                        <li><a href=https://sketchfab.com/3d-models/dog-puppy-72331763040e4314b154f84348fe0957
-                                class="link">Dog Model</a> created by Kenchoo </li>
-                        <li><a href=https://sketchfab.com/3d-models/duck-b78442de2bc542ef9393608c40664aa1
-                                class="link">Duck Model</a> created by Kitsuneko</li>
-                        <li><a href=https://sketchfab.com/3d-models/fur-tree-41fa3210e50944eaa489c148e5e2ccc7
-                                class="link">Tree Model</a> created by Harri Jones</li>
+                        <li><a href="https://sketchfab.com/3d-models/dog-puppy-72331763040e4314b154f84348fe0957" class="link">Dog Model</a> created by Kenchoo</li>
+                        <li><a href="https://sketchfab.com/3d-models/duck-b78442de2bc542ef9393608c40664aa1" class="link">Duck Model</a> created by Kitsuneko</li>
+                        <li><a href="https://sketchfab.com/3d-models/fur-tree-41fa3210e50944eaa489c148e5e2ccc7" class="link">Tree Model</a> created by Harri Jones</li>
                     </ul>
                     <h3>Images</h3>
                     <ul>
-                        <li>Crate Texture: <a
-                                href=https://stock.adobe.com/images/wooden-crate-front-view-cargo-box-texture-3d-illustration/217952517
-                                class="link">Adobe Stock Images</a></li>
-                        <li>Rock Texture: <a href=https://stock.adobe.com/search?k=rock+texture+seamless
-                                class="link">Adobe Stock Images</a></li>
-                        <li>Skybox: <a href=https://polyhaven.com/a/wasteland_clouds_puresky class="link">Poly Haven</a>
-                        </li>
-                        <li>Ocean (shader image): <a href=https://freestocktextures.com/photos-sea/ class="link">Free
-                                Stock Pictures</a> </li>
-                        <li>Roof Outlook: <a href=https://tastypudding.wordpress.com/2016/10/10/tudor-textures/
-                                class="link">Tudor Textures WordPress</a></li>
-                        <li>Medieval Wall: <a href=https://tastypudding.wordpress.com/2016/10/10/tudor-textures/
-                                class="link">Tudor Textures WordPress</a></li>
-                        <li>Wood Texture: <a href=https://pixabay.com/images/search/lighting+wood+material+texture/
-                                class="link">Pixabay</a></li>
-                        <li>Stone Wall with Windows: <a
-                                href=https://www.sketchuptextureclub.com/textures/architecture/buildings/windows/mixed-windows/medieval-windows-texture-seamless-20861
-                                class="link">Sketchup Texture Club</a></li>
-                        <li> Coin texture drawn by me.</li>
+                        <li>Crate Texture: <a href="https://stock.adobe.com/images/wooden-crate-front-view-cargo-box-texture-3d-illustration/217952517" class="link">Adobe Stock Images</a></li>
+                        <li>Rock Texture: <a href="https://stock.adobe.com/search?k=rock+texture+seamless" class="link">Adobe Stock Images</a></li>
+                        <li>Skybox: <a href="https://polyhaven.com/a/wasteland_clouds_puresky" class="link">Poly Haven</a></li>
+                        <li>Ocean (shader image): <a href="https://freestocktextures.com/photos-sea/" class="link">Free Stock Pictures</a></li>
+                        <li>Roof Outlook: <a href="https://tastypudding.wordpress.com/2016/10/10/tudor-textures/" class="link">Tudor Textures WordPress</a></li>
+                        <li>Medieval Wall: <a href="https://tastypudding.wordpress.com/2016/10/10/tudor-textures/" class="link">Tudor Textures WordPress</a></li>
+                        <li>Wood Texture: <a href="https://pixabay.com/images/search/lighting+wood+material+texture/" class="link">Pixabay</a></li>
+                        <li>Stone Wall with Windows: <a href="https://www.sketchuptextureclub.com/textures/architecture/buildings/windows/mixed-windows/medieval-windows-texture-seamless-20861" class="link">Sketchup Texture Club</a></li>
+                        <li>Coin texture drawn by me.</li>
                     </ul>
                     <h3>Learning & Help Resources</h3>
                     <ul>
-                        <li>Young Wu's <a href="https://pages.graphics.cs.wisc.edu/559-sp24/" class="link">Lecture
-                                materials</a> </li>
-                        <li> <a href="https://threejs.org/docs/#examples/en/loaders/GLTFLoader" class="link">How to load
-                                a GLTF model in THREE.js</a> </li>
-                        <li> <a href="https://blog.hubspot.com/website/call-javascript-function-html" class="link">How
-                                to call a JavaScript function in HTML</a> </li>
-                        <li> <a href="https://eater.net/quaternions/" class="link">Learning about Quaternions</a> </li>
-                        <li> <a href="https://discourse.threejs.org/t/move-object-in-direction-indicated-by-a-vector/44722"
-                                class="link">Moving an Object with Quaternion Rotations</a> </li>
-                        <li> <a href="https://stackoverflow.com/questions/70455746/three-js-click-event-with-raycaster-and-perspective-camera"
-                                class="link">Using Raycasters for Mouse Click functionality in THREE.js</a> </li>
-
-                        </ul>
-                    <h3 class="get__started">Next Page:
-                        <a href="./docs/3/">Page 3 - Features</a>
-                    </h3>
-
+                        <li>Young Wu's <a href="https://pages.graphics.cs.wisc.edu/559-sp24/" class="link">Lecture materials</a></li>
+                        <li><a href="https://threejs.org/docs/#examples/en/loaders/GLTFLoader" class="link">How to load a GLTF model in THREE.js</a></li>
+                        <li><a href="https://blog.hubspot.com/website/call-javascript-function-html" class="link">How to call a JavaScript function in HTML</a></li>
+                        <li><a href="https://eater.net/quaternions/" class="link">Learning about Quaternions</a></li>
+                        <li><a href="https://discourse.threejs.org/t/move-object-in-direction-indicated-by-a-vector/44722" class="link">Moving an Object with Quaternion Rotations</a></li>
+                        <li><a href="https://stackoverflow.com/questions/70455746/three-js-click-event-with-raycaster-and-perspective-camera" class="link">Using Raycasters for Mouse Click functionality in THREE.js</a></li>
+                    </ul>
+                    <h3 class="get__started">Next Page: <a href="./3/index.html">Page 3 - Features</a></h3>
                 </div>
             </main>
-
         </div>
     </div>
 </body>
