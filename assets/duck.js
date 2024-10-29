@@ -1,11 +1,9 @@
 // @ts-check
 /**
- * PROJECT 3: DUCK GAME
  * Author: Ella Santoro
- * TA Project Mentor: Alex Peseckis
+ * Project Mentor: Alex Peseckis
  * 
  * - All sources are defined in the first page (introduction of my project when you open with live server).
- * - ANY AND ALL use of CHATGPT is noted and thoroughly explained.
  * - While sources are linked on the front cover, learning sources will be linked inline as well, and will have thorough 
  * explanations to demonstrate understanding.
  * - Code taken from myself / my own past classwork is likely not cited everywhere ; I have not been flagged before, so it should
@@ -105,12 +103,9 @@ class Tree {
         let group = new T.Group();
         loader.load('./model/tree/scene.gltf', function (gltf) {
             const model = gltf.scene;
-            //PLEASE NOTE THE FOLLOWING 4 LINES ARE WRITTEN BY CHATGPT and edited by me.
-            //I could not figure out how to change the color of the model without going into the
-            //file, so chatGPT wrote this when I asked it how. I made it more generalized so it could take in
-            //any hex color, bust basically it traverses the model GLTF file and finds every single thing in the file
+            //traverses the model GLTF file and finds every single thing in the file
             //that is a mesh, then it access that specific child and alters the material.color and sets the hex to the color
-            //i choose to pass in. this is edited so it works with my specific GLTF model and for my specific use case with the colors.
+            //passed in
             model.traverse(function (child) {
                 if (child.isMesh) {
                     child.material.color.setHex(color);
@@ -760,9 +755,6 @@ function displayYouDiedMessage() {
 /**
  * This function generates coins onto the platform in random positions for the duck to collect - maximum 7 coins at a time in the world.
 */
-//THE FOLLOWING ONE LINE OF CODE WAS CREATED BY CHATGPT. before this my code did use setTimeout that I took from THREE.js docs, but I wanted it to be
-//a randomzied timer, and I could not get that to work, so I gave it my code that used setTimeout and it gave me the following code (with different values) which
-//i altered to fit my own. i will explain how it works since I did not write it:
 //setTimeout is like an alarm that will call the function given every x amount of settings, x being an amount of time you pass in. that is all I had
 //previously (which does work, just wasn't exactly what i wanted). this version sets the timer with my value 4000 that I had before, but it also uses Math.random() * 1000,
 //which gives the timer an extra delay of a random number anywhere between 0 and 1000 milliseconds. this makes the coin spawning more random, but still controlled since its a
@@ -909,7 +901,6 @@ function makeDogJumpBack() {
             //angles suffer when we try and just do it with normal rotation calculations
             //learned how to do it here: https://discourse.threejs.org/t/move-object-in-direction-indicated-by-a-vector/44722
             //learned about quaternions: https://eater.net/quaternions/
-            //also asked chatGPT to explain some of the questions i had, but the code is mine.
             //basically quaternions are a construct that use complex numbers. the thing is, we know complex numbers as 
             //xi + yj format, but the quaternions actually have 4 of those components total. there is a scalar portion (one component), and a
             //vector part (3 of the components). it uses that format for rotation. the reason why this is beneficial over the normal rotations (aka

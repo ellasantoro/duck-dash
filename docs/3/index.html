@@ -13,159 +13,51 @@
 </head>
 
 <body>
+    <header class="top-nav">
+        <nav class="top-nav__menu">
+            <ul class="top-nav__list">
+                <li class="top-nav__item top-nav__unselected"><a href="../../index.html">1: Duck Dash </a></li>
+                <li class="top-nav__item top-nav__unselected"><a href="../../docs/2/">2. Documentation & Information</a></li>
+                <li class="top-nav__item top-nav__selected">3: Rubric & Explanation </li>
+            </ul>
+        </nav>
+    </header>
     <div class="container container--outer">
         <div class="maincolumn">
             <main class="main" role="main">
                 <article class="post">
                     <header class="post__header">
-                        <h1 class="post__title">Rubric & Explanation</h1>
+                        <h1 class="post__title">Game Background & Information</h1>
                     </header>
 
 
 
                     <div class="content post__content clearfix">
-                        <h2 id="normal-maps">Things I Have Learned</h2>
-                        <p>I have learned a lot in my extra project. Some things I set out to learn, and others I
-                            learned through issues I encountered, or trying to better my game in general. Below is a
-                            list of takeaways from my project</p>
+                        <h2 id="normal-maps">Project Features</h2>
                         <ul>
-                            <li>How to animate models using nodes from GLTF file</li>
-                            <li>How to animate object parts based on user key input</li>
-                            <li>How to move/other functionality based on user key input</li>
-                            <li>How to rotate using quaternions; learning about quaternions in general, and why they
-                                differ and can be advantageous in comparison to euler angles</li>
-                            <li>How to use raycasters and personally defined event functions to create clicking events
-                                based on where you click on the screen, and have 3D objects react to your clicking
+                            <li>Animates models using nodes from GLTF file</li>
+                            <li>Animates object parts based on user key input</li>
+                            <li>Functionality based on user key input</li>
+                            <li>Rotates using quaternions & euler angles</li>
+                            <li>Utilizes raycasters and personally defined event functions to create clicking events
+                                based on where you click on the screen, and have 3D objects react to clicking
                                 action</li>
-                            <li>How to set boundaries using boxes to ensure certain boxes won't intersect</li>
-                            <li>How to make sprites fall off of a platform</li>
-                            <li>How to make sprites jump, and be disallowed from double jumping, and changing a max jump
-                                height based on where the y position is</li>
-                            <li>Learned how important flags were (at least for me) when I was making my game!!! I needed
-                                so many to satisfy all the things I wanted</li>
-                            <li>Learned a lot about how many things are connected when you're creating a game and how
-                                each part is so dependent on many other parts (or functions/flags), and how complex that
-                                can get,
-                                there are so many things I would've done differently in the process of making the game,
-                                it got very messy, very fast.
-                            </li>
-                            <li>Connecting HTML and JS for score keeping and death screen ; different from how we've
-                                used the connecting variables in the past.</li>
-                            <li>using timers to randomly make objects appear (my coins!) and how to make the coins
+                            <li>Sets boundaries using boxes to ensure certain boxes won't intersect</li>
+                            <li>Allows sprites to fall off of a platform</li>
+                            <li>Allows sprites to jump, be disallowed from double jumping, and change a max jump
+                                height based on y position</li>
+                            <li>Using flags</li>
+                            <li>Connects HTML and JS for score keeping and death screen</li>
+                            <li>Uses timers to make objects randomly appear (coins) and makes coins
                                 disappear once collided</li>
-                            <li>And lastly, re-learned some HTML tags in order to write these (not-so-)little blurbs.
-                            </li>
                         </ul>
-                        <h2 id="bump-maps-and-normal-maps">Rubric, Explanation, & Note from Student</h2>
-                        <p>Looking back at my rubric, it is kind of odd with the buffergeometry and shader requirement,
-                            as it isn't necessarily super relevant other than demonstrating what we've learned at a
-                            slightly
-                            more advanced level. I am completely fine if you decide to grade a bit differently than my
-                            rubric states (although you can definitely still use it!). You can grade based on
-                            functionality/design in general
-                            if that works more easily for you. You'll notice I added some advanced / extra points, but
-                            those were just things I thought of after the fact that do not need to be taken into
-                            consideration. To put it simply,
-                            I just wanted to create a 3D game with WASD/space/clicking functionality, that semeed
-                            cohesive and had several new elements that I've never learned, and I think my project does
-                            accomplish what I set out to achieve.
-
-                            Feel free to send me an email if there are any issues with my code / issues with rubric /
-                            anything else, I would be happy to discuss / work out any issues there are!
-
-                        <p><strong>And lastly, I just want to say thank you for mentoring my project, especially with my
-                                last-minute proposal submission. I appreciate the time it takes to read through this and grade.</strong>
-                        </p>
-
-
-                        <h2>Rubric</h2>
-
-                        <div class="page-rubric-container">
-                            <details class="page__rubric">
-                                <summary>Workbook Rubric (As outlined in my emailed rubric)</summary>
-                                <br />
-                                <div class="page-rubric-grid">
-                                    <div class="page-rubric-grid-header rubric-box-regular">Points (10):</div>
-                                    <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                    <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
-                                    <div class="page-rubric-grid-desc rubric-box-regular">A cohesive, visually pleasing
-                                        game
-                                    </div>
-                                    <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                    <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
-                                    <div class="page-rubric-grid-desc rubric-box-regular">Duck can jump on top of
-                                        objects
-                                        and cannot go inside of them</div>
-                                    <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                    <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
-                                    <div class="page-rubric-grid-desc rubric-box-regular">Duck can fall off of objects
-                                    </div>
-                                    <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                    <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
-                                    <div class="page-rubric-grid-desc rubric-box-regular">Ending screen</div>
-                                    <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                    <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
-                                    <div class="page-rubric-grid-desc rubric-box-regular">Correct score keeping</div>
-                                    <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                    <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
-                                    <div class="page-rubric-grid-desc rubric-box-regular">Uses Mapping </div>
-                                    <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                    <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
-                                    <div class="page-rubric-grid-desc rubric-box-regular">Uses both buffer geometry
-                                        along
-                                        with other three geometries</div>
-                                    <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                    <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
-                                    <div class="page-rubric-grid-desc rubric-box-regular">Movement of duck looks smooth
-                                    </div>
-                                    <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                    <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
-                                    <div class="page-rubric-grid-desc rubric-box-regular">Submission complete & on time
-                                    </div>
-                                    <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                    <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
-                                    <div class="page-rubric-grid-desc rubric-box-regular">Duck can collect coins (and
-                                        will
-                                        update score as mentioned above</div>
-
-
-                                    <div class="page-rubric-grid-header rubric-box-regular">Extra points (1.5) (came up
-                                        with
-                                        along the way, you can definitely choose to ignore these as they were not
-                                        mentioned
-                                        in my email, they are just extra things I added that I thought were cool):</div>
-                                    <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                    <div class="page-rubric-grid-points rubric-box-regular">0.5 pt</div>
-                                    <div class="page-rubric-grid-desc rubric-box-regular">Use a model and create
-                                        animation
-                                        using nodes from a GLTF file so that a model looks like its moving</div>
-                                    <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                    <div class="page-rubric-grid-points rubric-box-regular">0.5 pt</div>
-                                    <div class="page-rubric-grid-desc rubric-box-regular">Nice environment outside of
-                                        the
-                                        game (HTML/Workbook Pages look neat and professional)</div>
-                                    <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                    <div class="page-rubric-grid-points rubric-box-regular">0.5 pt</div>
-                                    <div class="page-rubric-grid-desc rubric-box-regular">Dynamic, animated shader for
-                                        lake
-                                        waves</div>
-                            </details>
-                        </div>
-
-
+                        <h3 class="get__started">Back to Home:
+                            <a href="../../index.html">Duck Dash</a>
+                        </h3>
                     </div>
                 </article>
             </main>
 
-        </div>
-        <div class="sidebar">
-            <h2 class="Side_Title">Supplemental Project: Duck Game</h2>
-            <p class="Side__Note">Pages:</p>
-            <ul class="Side__List">
-                <li class="Side__Item Side__Unselected"><a href="../../">1. Introduction</a></li>
-                <li class="Side__Item Side__Unselected"> <a href="../../docs/2/">2: Duck Game </a></li>
-                <li class="Side__Item Side__Selected"> 3: Rubric & Explanation </li>
-            </ul>
         </div>
     </div>
 </body>

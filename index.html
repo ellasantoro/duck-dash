@@ -7,207 +7,63 @@
     https://graphics.cs.wisc.edu/Courses/559-sp2021/ -->
 
 <head>
-    <meta name="generator" content="Hugo 0.121.1">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./css/workbook.css">
     <script src="./js/resizeIFrames.js"></script>
 </head>
 
 <body>
+    <header class="top-nav">
+        <nav class="top-nav__menu">
+            <ul class="top-nav__list">
+                <li class="top-nav__item top-nav__selected">1: Duck Dash</li>
+                <li class="top-nav__item top-nav__unselected"><a href="../../docs/2/">2. Documentation & Information</a>
+                </li>
+                <li class="top-nav__item top-nav__unselected"><a href="../../docs/3/">3: Rubric & Explanation</a></li>
+            </ul>
+        </nav>
+    </header>
     <div class="container container--outer">
+
         <div class="maincolumn">
+            <main class="main" role="main">
+                <article class="post">
+                    <header class="post__header">
+                        <h1 class="post__title">Duck Dash</h1>
+                    </header>
 
 
-            <main class="main list" role="main">
-                <header class="main__header">
-                    <h1 class="main__title">Project 3: Supplemental Project - Duck Game</h1>
-                </header>
-                <div class="content main__content clearfix">
+                    <div class="content post__content clearfix">
+                        <p style="text-align: center">Relevant code can be found in
+                            <a href="../../assets/duck.js" class="for_students">duck.js</a> (
+                            <a href="../../assets/duck.html" class="for_students">duck.html</a>)
+                        </p>
+                        <iframe title="duck" src="../../assets/duck.html" class="includebox includebox-standard"
+                            width="70%" height="70%" scrolling="no" frameborder="0"></iframe>
 
-
-                    <p>This project is created by Ella Santoro. TA Project Mentor: Alex Peseckis</p>
-                    <h2>Game Layout</h2>
-                    <ol>
-                        <li>The game follows two enemies: a duck (controlled by the user) and a dog in the neighborhood
-                        </li>
-                        <li>The duck loves shiny things and likes to steal all the coins that humans have dropped!</li>
-                        <li>The duck is able to jump onto crates to escape the dog - but only if the crates are high
-                            enough! Coins may
-                            also land on top of crates.</li>
-                        <li>Falling off of the platform will result in a decremented score, but gaining a coin will
-                            result in an incremented score.</li>
-                        <li>If the dog is coming a little too close, the duck can push the dog back a few steps by
-                            clicking on it.</li>
-                        <li>If the dog catches up, the duck will die, and you will be presented with the option to play
-                            again!</li>
-                    </ol>
-                    <h2>Game Details & Functionality</h2>
-                    <p>This game was created using THREE.js and CS559 Framework provided in previous course projects. It
-                        further demonstrates concepts learned in class, as well as new concepts that were not discussed:
-                    </p>
-                    <ol>
-                        <li>Game mechanics and user (key and click) input in 3D using THREE.js</li>
-                        <li>Keeping score in game by combining game mechanics in 3D with score tracking, as well as
-                            connecting HTML to JS to update score</li>
-                        <li>Continuous game: game can be replayed an infinite number of times by clicking the respawn
-                            button, which clears score, returns camera position, returns sprite positions, and clears
-                            coin positions</li>
-                        <li>Using imported models to create animation - accessing nodes of a model to make the
-                            (dog,duck) models appear as though they are running by rotating leg nodes that were
-                            extracted from a GLTF file</li>
-                        <li>Creating leg animation only when the user is moving the duck</li>
-                        <li>Creating movement functionality so that the duck cannot jump higher than a specific amount,
-                            which is based on whether or not they are on the ground or on a crate, ensuring that the
-                            duck can not just run on a grid, but can run diagonally as well</li>
-                        <li>Handling collisions between duck and dog, and duck and box so that the duck can actually
-                            jump on top of the box and not intersect it</li>
-                        <li>Creating an ending "screen" to siginify the game has ended with a recap of score</li>
-                        <li>Advanced 3D Shader to simulate a pond</li>
-                        <li>Making the dog's position and rotation angle relative to where the user moves the duck, this
-                            way the dog is not just facing one direction the entire time</li>
-                        <li>Texture mapping, object creation, using vertices for building roofs, other demonstrated
-                            concepts from class.</li>
-                        </li>
-                    </ol>
-                    <h2 id="readings">Documentation</h2>
-                    <p>Although the code was written by me, I have utilized the following resources for help and for
-                        model/texture:</p>
-                    <h3>Models</h3>
-                    <p> full attribution can be found under the individual model files in the model folder of the
-                        repository.</p>
-                    <ul>
-                        <li><a href=https://sketchfab.com/3d-models/dog-puppy-72331763040e4314b154f84348fe0957
-                                class="link">Dog Model</a> created by Kenchoo </li>
-                        <li><a href=https://sketchfab.com/3d-models/duck-b78442de2bc542ef9393608c40664aa1
-                                class="link">Duck Model</a> created by Kitsuneko</li>
-                        <li><a href=https://sketchfab.com/3d-models/fur-tree-41fa3210e50944eaa489c148e5e2ccc7
-                                class="link">Tree Model</a> created by Harri Jones</li>
-                    </ul>
-                    <h3>Images</h3>
-                    <ul>
-                        <li>Crate Texture: <a
-                                href=https://stock.adobe.com/images/wooden-crate-front-view-cargo-box-texture-3d-illustration/217952517
-                                class="link">Adobe Stock Images</a></li>
-                        <li>Rock Texture: <a href=https://stock.adobe.com/search?k=rock+texture+seamless
-                                class="link">Adobe Stock Images</a></li>
-                        <li>Skybox: <a href=https://polyhaven.com/a/wasteland_clouds_puresky class="link">Poly Haven</a>
-                        </li>
-                        <li>Ocean (shader image): <a href=https://freestocktextures.com/photos-sea/ class="link">Free
-                                Stock Pictures</a> </li>
-                        <li>Roof Outlook: <a href=https://tastypudding.wordpress.com/2016/10/10/tudor-textures/
-                                class="link">Tudor Textures WordPress</a></li>
-                        <li>Medieval Wall: <a href=https://tastypudding.wordpress.com/2016/10/10/tudor-textures/
-                                class="link">Tudor Textures WordPress</a></li>
-                        <li>Wood Texture: <a href=https://pixabay.com/images/search/lighting+wood+material+texture/
-                                class="link">Pixabay</a></li>
-                        <li>Stone Wall with Windows: <a
-                                href=https://www.sketchuptextureclub.com/textures/architecture/buildings/windows/mixed-windows/medieval-windows-texture-seamless-20861
-                                class="link">Sketchup Texture Club</a></li>
-                        <li> Coin texture drawn by me.</li>
-                    </ul>
-                    <h3>Learning & Help Resources</h3>
-                    <ul>
-                        <li>Young Wu's <a href="https://pages.graphics.cs.wisc.edu/559-sp24/" class="link">Lecture
-                                materials</a> </li>
-                        <li>Past workbooks & projects</li>
-                        <li> <a href="https://threejs.org/docs/#examples/en/loaders/GLTFLoader" class="link">How to load
-                                a GLTF model in THREE.js</a> </li>
-                        <li> <a href="https://blog.hubspot.com/website/call-javascript-function-html" class="link">How
-                                to call a JavaScript function in HTML</a> </li>
-                        <li> <a href="https://eater.net/quaternions/" class="link">Learning about Quaternions</a> </li>
-                        <li> <a href="https://discourse.threejs.org/t/move-object-in-direction-indicated-by-a-vector/44722"
-                                class="link">Moving an Object with Quaternion Rotations</a> </li>
-                        <li> <a href="https://stackoverflow.com/questions/70455746/three-js-click-event-with-raycaster-and-perspective-camera"
-                                class="link">Using Raycasters for Mouse Click functionality in THREE.js</a> </li>
-                        <li>ChatGPT (NOTE: if ChatGPT was ever used for help, it is explicitly mentioned in the file,
-                            with detailed descriptions of why it was used, how it was used, and an explanation of how it
-                            works to ensure that I understand any resource I use.)</li>
-
-                    </ul>
-
-
-                    <h2>Rubric</h2>
-
-                    <div class="page-rubric-container">
-                        <details class="page__rubric">
-                            <summary>Workbook Rubric (As outlined in my emailed rubric)</summary>
-                            <br />
-                            <div class="page-rubric-grid">
-                                <div class="page-rubric-grid-header rubric-box-regular">Points (10):</div>
-                                <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
-                                <div class="page-rubric-grid-desc rubric-box-regular">A cohesive, visually pleasing game
-                                </div>
-                                <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
-                                <div class="page-rubric-grid-desc rubric-box-regular">Duck can jump on top of objects
-                                    and cannot go inside of them</div>
-                                <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
-                                <div class="page-rubric-grid-desc rubric-box-regular">Duck can fall off of objects</div>
-                                <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
-                                <div class="page-rubric-grid-desc rubric-box-regular">Ending screen</div>
-                                <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
-                                <div class="page-rubric-grid-desc rubric-box-regular">Correct score keeping</div>
-                                <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
-                                <div class="page-rubric-grid-desc rubric-box-regular">Has clicking behavior </div>
-                                <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
-                                <div class="page-rubric-grid-desc rubric-box-regular">Uses both buffer geometry along
-                                    with other three geometries</div>
-                                <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
-                                <div class="page-rubric-grid-desc rubric-box-regular">Movement of duck looks smooth
-                                </div>
-                                <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
-                                <div class="page-rubric-grid-desc rubric-box-regular">Submission complete & on time
-                                </div>
-                                <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                <div class="page-rubric-grid-points rubric-box-regular">1 pt</div>
-                                <div class="page-rubric-grid-desc rubric-box-regular">Duck can collect coins (and will
-                                    update score as mentioned above</div>
-
-
-                                <div class="page-rubric-grid-header rubric-box-regular">Extra points (1.5) (came up with
-                                    along the way, you can definitely choose to ignore these as they were not mentioned
-                                    in my email, they are just extra things I added that I thought were cool):</div>
-                                <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                <div class="page-rubric-grid-points rubric-box-regular">0.5 pt</div>
-                                <div class="page-rubric-grid-desc rubric-box-regular">Use a model and create animation
-                                    using nodes from a GLTF file so that a model looks like its moving</div>
-                                <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                <div class="page-rubric-grid-points rubric-box-regular">0.5 pt</div>
-                                <div class="page-rubric-grid-desc rubric-box-regular">Nice environment outside of the
-                                    game (HTML/Workbook Pages look neat and professional)</div>
-                                <div class="page-rubric-grid-box rubric-box-regular"></div>
-                                <div class="page-rubric-grid-points rubric-box-regular">0.5 pt</div>
-                                <div class="page-rubric-grid-desc rubric-box-regular">Dynamic, animated shader for lake
-                                    waves</div>
-                        </details>
+                        <h2>Controls </h2>
+                        <ul>
+                            <li><strong>W</strong> - walk north</li>
+                            <li><strong>A</strong> - walk west</li>
+                            <li><strong>S</strong> - walk south</li>
+                            <li><strong>D</strong> - walk east</li>
+                            <li><strong>Space</strong> - jump (you cannot double jump unless you are near a medium or
+                                tall stack of crates.</li>
+                            <li><strong>Click</strong> - click on dog to push it back a few steps</li>
+                        </ul>
+                        <h2>Points </h2>
+                        <ul>
+                            <li><strong>Collect coin</strong> + 1 point</li>
+                            <li><strong>Fall off platform</strong> - 2 points (score is always >=0)</li>
+                            <li><strong>Dog catches you</strong> End of game, score reset</li>
+                        </ul>
+                        <h3 class="get__started">Next Page:
+                            <a href="./docs/2/">Page 2 - Documentation & Information</a>
+                        </h3>
                     </div>
-
-
-
-                    <h3 class="get__started">Next Page:
-                        <a href="./docs/2/">Page 2 - Duck Game</a>
-                    </h3>
-
-                </div>
+                </article>
             </main>
 
-        </div>
-        <div class="sidebar">
-            <h2 class="Side_Title">Supplemental Project: Duck Game</h2>
-            <p class="Side__Note">Pages:</p>
-            <ul class="Side__List">
-                <li class="Side__Item Side__Selected">Introduction </li>
-                <li class="Side__Item Side__Unselected"> <a href="./docs/2/">2. Duck Game</a></li>
-                <li class="Side__Item Side__Unselected"> <a href="./docs/3/">3. Rubric & Explanations </a></li>
-            </ul>
         </div>
     </div>
 </body>
